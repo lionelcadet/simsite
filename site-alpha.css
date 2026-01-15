@@ -115,6 +115,831 @@ p.toggle-header {
 }
 
 /* =================================================================
+   PARTIE 1 : STRUCTURE GRILLE 5 COLONNES (col-5)
+   Nom de classe racine : col-5 (ou col-5-sep-tiret)
+   PAR DÉFAUT : Collé (Espace 0)
+   OPTIONS : espace-5, espace-20
+   ================================================================= */
+
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-5"] .grid-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+[class*="col-5"] .grid-column {
+    box-sizing: border-box !important;
+}
+
+/* Correctifs Visuels (Images & Titres) */
+[class*="col-5"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="col-5"] .headingWidget { margin-top: 30px !important; }
+
+
+/* --- 2. VERSION BUREAU (> 768px) --- */
+@media (min-width: 769px) {
+
+    /* --- PAR DÉFAUT (Collé / Espace 0) --- */
+    [class*="col-5"] .grid-content .grid-column {
+        width: 20% !important; flex: 0 0 20% !important; 
+        margin: 0 !important;
+    }
+
+    /* --- OPTION : ESPACE 20 --- */
+    [class*="col-5"][class*="espace-20"] .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(20% - 20px) !important; flex: 0 0 calc(20% - 20px) !important;
+    }
+
+    /* --- OPTION : ESPACE 5 --- */
+    [class*="col-5"][class*="espace-5"] .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(20% - 5px) !important; flex: 0 0 calc(20% - 5px) !important;
+    }
+}
+
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+    
+    /* > Par défaut (Collé) */
+    [class*="col-5"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
+    }
+    /* Le dernier élément (le 5ème) prend 100% de largeur */
+    [class*="col-5"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: 100% !important; flex: 0 0 100% !important;
+    }
+
+    /* > Espace 20 */
+    [class*="col-5"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
+    }
+    [class*="col-5"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
+        margin-top: 10px !important;
+    }
+    
+    /* > Espace 5 */
+    [class*="col-5"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+    [class*="col-5"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
+        margin-top: 2.5px !important;
+    }
+
+
+    /* --- CAS B : STRETCHED (1 colonne) --- */
+    
+    /* > Par défaut */
+    [class*="col-5"].stretched-tablet .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-5"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+    
+    /* Correctif Hauteur image auto */
+    [class*="col-5"] .grid-column:last-of-type .widget.imageWidget,
+    [class*="col-5"] .grid-column:last-of-type .widget.embedWidget,
+    [class*="col-5"] .grid-column:last-of-type .widget.map-widget, 
+    [class*="col-5"] .grid-column:last-of-type .widget.sliderWidget,
+    [class*="col-5"] .grid-column:last-of-type .widget.videoWidget {
+        max-height: initial;
+    }
+}
+
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+    
+    /* > Par défaut */
+    [class*="col-5"]:not(.stretched-mobile) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important;
+    }
+    [class*="col-5"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: 100% !important; flex: 0 0 100% !important;
+    }
+
+    /* > Espace 20 */
+    [class*="col-5"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; padding: 10px !important;
+        width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
+    }
+    [class*="col-5"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: calc(100% - 10px) !important; flex: 0 0 calc(100% - 10px) !important;
+    }
+    
+    /* > Espace 5 */
+    [class*="col-5"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 10px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+    [class*="col-5"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
+        margin: 2.5px !important;
+    }
+
+
+    /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
+    
+    /* > Par défaut */
+    [class*="col-5"].stretched-mobile .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-5"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+}
+
+
+/* =================================================================
+   PARTIE 2 : EXTENSION SÉPARATEURS (sep-tiret)
+   CONDITION : Ne s'applique que SI AUCUN ESPACE n'est défini
+   ================================================================= */
+
+/* Configuration de base */
+[class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+    border-style: dashed !important;
+    border-color: rgba(150, 150, 150, 0.4) !important;
+    border-width: 0px !important;
+}
+
+/* Bureau (5 Colonnes) */
+@media (min-width: 769px) {
+    /* Tiret vertical sur tous sauf les multiples de 5 (5, 10, 15...) */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:not(:nth-child(5n)) { 
+        border-right-width: 1px !important; 
+    }
+    
+    /* MARGE TOP 25px : À partir de la 2ème ligne (donc le 6ème élément) */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:nth-child(n+6) {
+        margin-top: 25px !important;
+    }
+}
+
+/* Tablette (2 Colonnes) */
+@media (max-width: 768px) and (min-width: 481px) {
+    /* Non Stretched (2x2) */
+    
+    /* Tiret vertical sur les impairs (colonne gauche) */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
+        border-right-width: 1px !important; 
+    }
+    
+    /* Cas particulier du dernier élément (5ème) : PAS de bordure droite */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:last-child { 
+        border-right-width: 0px !important; 
+    }
+    
+    /* Bordure bas sur tout le monde sauf le dernier */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:not(:last-child) { 
+        border-bottom-width: 1px !important; 
+    }
+
+    /* MARGE TOP 25px : À partir du 3ème élément */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(n+3) {
+        margin-top: 25px !important;
+    }
+
+    /* Stretched (1 colonne) */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { 
+        border-right-width: 0px !important; border-bottom-width: 1px !important; 
+    }
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { 
+        border-bottom-width: 0px !important; 
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    /* Non Stretched (2 colonnes) */
+    
+    /* Tiret vertical sur les impairs */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
+        border-right-width: 1px !important; 
+    }
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:last-child { 
+        border-right-width: 0px !important; 
+    }
+    
+    /* Bordure bas sauf le dernier */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:not(:last-child) { 
+        border-bottom-width: 1px !important; 
+    }
+
+    /* MARGE TOP 25px : À partir du 3ème élément */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(n+3) {
+        margin-top: 25px !important;
+    }
+
+    /* Stretched (1 colonne) */
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { 
+        border-right-width: 0px !important; border-bottom-width: 1px !important; 
+    }
+    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { 
+        border-bottom-width: 0px !important; 
+    }
+}
+
+/* =================================================================
+   PARTIE 1 : STRUCTURE GRILLE 4 COLONNES (col-4)
+   Nom de classe racine : col-4 (ou col-4-sep-tiret)
+   PAR DÉFAUT : Collé (Espace 0)
+   OPTIONS : espace-5, espace-20
+   ================================================================= */
+
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-4"] .grid-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+[class*="col-4"] .grid-column {
+    box-sizing: border-box !important;
+}
+
+/* Correctifs Visuels (Images & Titres) */
+[class*="col-4"] .image-box .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="col-4"] .headingWidget { margin-top: 30px !important; }
+
+
+/* --- 2. VERSION BUREAU (> 768px) --- */
+@media (min-width: 769px) {
+
+    /* --- PAR DÉFAUT (Collé / Espace 0) --- */
+    [class*="col-4"] .grid-content .grid-column {
+        width: 25% !important; flex: 0 0 25% !important; 
+        margin: 0 !important;
+    }
+
+    /* --- OPTION : ESPACE 20 --- */
+    [class*="col-4"][class*="espace-20"] .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(25% - 20px) !important; flex: 0 0 calc(25% - 20px) !important;
+    }
+
+    /* --- OPTION : ESPACE 5 --- */
+    [class*="col-4"][class*="espace-5"] .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(25% - 5px) !important; flex: 0 0 calc(25% - 5px) !important;
+    }
+}
+
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes par ligne) --- */
+    
+    /* > Par défaut */
+    [class*="col-4"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 */
+    [class*="col-4"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
+    }
+    
+    /* > Espace 5 */
+    [class*="col-4"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+
+
+    /* --- CAS B : STRETCHED (1 colonne) --- */
+    
+    /* > Par défaut */
+    [class*="col-4"].stretched-tablet .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-4"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+}
+
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+    
+    /* > Par défaut */
+    [class*="col-4"]:not(.stretched-mobile) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important;
+    }
+
+    /* > Espace 20 */
+    [class*="col-4"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; padding: 10px !important;
+        width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
+    }
+    
+    /* > Espace 5 */
+    [class*="col-4"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 10px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+
+
+    /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
+    
+    /* > Par défaut */
+    [class*="col-4"].stretched-mobile .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-4"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+}
+
+
+/* =================================================================
+   PARTIE 2 : EXTENSION SÉPARATEURS (sep-tiret)
+   CONDITION : Ne s'applique que SI AUCUN ESPACE n'est défini
+   ================================================================= */
+
+/* Configuration de base */
+[class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+    border-style: dashed !important;
+    border-color: rgba(150, 150, 150, 0.4) !important;
+    border-width: 0px !important;
+}
+
+/* --- BUREAU (4 Colonnes par ligne) --- */
+@media (min-width: 769px) {
+    /* Tiret vertical sur tous sauf le dernier de la ligne (4, 8, 12...) */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:not(:nth-child(4n)) { 
+        border-right-width: 1px !important; 
+    }
+    
+    /* Bordure bas pour toutes les lignes sauf la dernière (si plus de 4 items) */
+    /* On cible tout le monde, et on l'enlève aux 4 derniers via nth-last-child, 
+       mais pour faire simple sur Simvoly on va gérer le margin-top principalement */
+
+    /* MARGE TOP 25px : Pour les éléments de la 2ème ligne et suivantes (5, 6, 7...) */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:nth-child(n+5) {
+        margin-top: 25px !important;
+        /* Optionnel : ajouter une bordure top ou bottom si tu as plusieurs lignes sur bureau */
+    }
+}
+
+/* --- TABLETTE (2 Colonnes par ligne) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+    /* Non Stretched (2x2) */
+    
+    /* Tiret vertical sur les impairs (colonne gauche) */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
+        border-right-width: 1px !important; 
+    }
+    
+    /* Bordure bas sur tout le monde sauf les 2 derniers */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) { 
+        border-bottom-width: 1px !important; 
+    }
+
+    /* MARGE TOP 25px : À partir du 3ème élément (2ème ligne) */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(n+3) {
+        margin-top: 25px !important;
+    }
+
+    /* Stretched (1 colonne) */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { 
+        border-right-width: 0px !important; border-bottom-width: 1px !important; 
+    }
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { 
+        border-bottom-width: 0px !important; 
+    }
+}
+
+/* --- MOBILE (2 Colonnes ou 1 selon config) --- */
+@media (max-width: 480px) {
+    /* Non Stretched (2 colonnes) */
+    
+    /* Tiret vertical sur les impairs */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
+        border-right-width: 1px !important; 
+    }
+    
+    /* Bordure bas sauf les 2 derniers */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-last-child(n+3) { 
+        border-bottom-width: 1px !important; 
+    }
+
+    /* MARGE TOP 25px : À partir du 3ème élément */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(n+3) {
+        margin-top: 25px !important;
+    }
+
+    /* Stretched (1 colonne) */
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { 
+        border-right-width: 0px !important; border-bottom-width: 1px !important; 
+    }
+    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { 
+        border-bottom-width: 0px !important; 
+    }
+}
+
+/* =================================================================
+   BLOC 3 COLONNES INTELLIGENT (Services, Images...)
+   Nom de classe : col-3
+   PAR DÉFAUT : Collé (Espace 0)
+   OPTIONS : espace-5, espace-20
+   ================================================================= */
+
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-3"] .grid-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+[class*="col-3"] .grid-column {
+    box-sizing: border-box !important;
+}
+
+/* Correctifs Images et Titres */
+[class*="col-3"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="col-3"] .headingWidget { margin-top: 30px !important; }
+
+/* --- 2. VERSION BUREAU (> 768px) --- */
+@media (min-width: 769px) {
+
+    /* --- COMPORTEMENT PAR DÉFAUT (Collé / Espace 0) --- */
+    /* S'applique si aucune classe espace-XX n'est présente */
+    [class*="col-3"] .grid-content .grid-column {
+        width: 33.333% !important; flex: 0 0 33.333% !important; 
+        margin: 0 !important;
+    }
+
+    /* --- OPTION : ESPACE 20 --- */
+    /* Mode Carte + Espace 20 */
+    [class*="col-3"][class*="espace-20"] .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(33.333% - 20px) !important; flex: 0 0 calc(33.333% - 20px) !important;
+    }
+
+    /* --- OPTION : ESPACE 5 --- */
+    [class*="col-3"][class*="espace-5"] .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(33.333% - 5px) !important; flex: 0 0 calc(33.333% - 5px) !important;
+    }
+}
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes + 1 dessous) --- */
+
+    /* > PAR DÉFAUT (Collé / Espace 0) */
+    [class*="col-3"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
+    }
+    /* Force le dernier élément (le 3ème) à prendre 100% */
+    [class*="col-3"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: 100% !important; flex: 0 0 100% !important;
+    }
+
+    /* > OPTION ESPACE 20 */
+    [class*="col-3"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
+    }
+    [class*="col-3"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
+        margin-top: 10px !important; /* Reset marge standard */
+    }
+
+    /* > OPTION ESPACE 5 */
+    [class*="col-3"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+    [class*="col-3"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
+        margin-top: 2.5px !important;
+    }
+
+    /* --- CAS B : STRETCHED (1 colonne) --- */
+    [class*="col-3"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+    /* Stretched par défaut (collé) */
+    [class*="col-3"].stretched-tablet .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important; 
+    }
+  
+  /* Correctif Hauteur image auto */
+    [class*="col-3"] .grid-column:last-of-type .widget.imageWidget,
+    [class*="col-3"] .grid-column:last-of-type .widget.embedWidget,
+    [class*="col-3"] .grid-column:last-of-type .widget.imageWidget,
+    [class*="col-3"] .grid-column:last-of-type .widget.map-widget, 
+    [class*="col-3"] .grid-column:last-of-type .widget.sliderWidget,
+    [class*="col-3"] .grid-column:last-of-type .widget.videoWidget {
+        max-height: initial;
+    }
+}
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+
+    /* --- CAS A : NON STRETCHED --- */
+    
+    /* > PAR DÉFAUT (Collé) */
+    [class*="col-3"]:not(.stretched-mobile) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important; 
+    }
+    [class*="col-3"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: 100% !important; flex: 0 0 100% !important;
+    }
+
+    /* > ESPACE 20 */
+    [class*="col-3"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; padding: 10px !important;
+        width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
+    }
+    [class*="col-3"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+        width: calc(100% - 10px) !important; flex: 0 0 calc(100% - 10px) !important;
+    }
+    
+    /* > ESPACE 5 */
+    [class*="col-3"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 10px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+  
+   [class*="col-3"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+        margin: 2.5px !important; padding: 10px !important;
+        width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
+    }
+
+
+    /* --- CAS B : STRETCHED MOBILE --- */
+    [class*="col-3"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+    [class*="col-3"].stretched-mobile .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+}
+
+/* =================================================================
+   EXTENSION : SÉPARATEURS TIRETS (sep-tiret)
+   CONDITION : Ne s'applique que SI AUCUN ESPACE n'est défini
+   ================================================================= */
+
+/* Configuration de base */
+/* On cible col-3 avec sep-tiret, MAIS qui n'a PAS espace-20 NI espace-5 */
+[class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+    border-style: dashed !important;
+    border-color: rgba(150, 150, 150, 0.4) !important;
+    border-width: 0px !important;
+}
+
+/* Bureau */
+@media (min-width: 769px) {
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column { border-right-width: 1px !important; }
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
+}
+
+/* Tablette */
+@media (max-width: 768px) and (min-width: 481px) {
+    /* Non Stretched */
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { border-right-width: 1px !important; }
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:not(:last-child) { border-bottom-width: 1px !important; }
+/* Marge spéciale pour le 3ème élément SEULEMENT s'il y a des tirets */
+  [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) { margin-top : 25px !important;}
+
+    /* Stretched */
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { border-right-width: 0px !important; border-bottom-width: 1px !important; }
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { border-bottom-width: 0px !important; }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    /* Non Stretched */
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { border-right-width: 1px !important; }
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:not(:last-child) { border-bottom-width: 1px !important; }
+    /* Marge spéciale pour le 3ème élément SEULEMENT s'il y a des tirets */
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) { margin-top : 25px !important;}
+  
+    /* Stretched */
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { border-right-width: 0px !important; border-bottom-width: 1px !important; }
+    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { border-bottom-width: 0px !important; }
+}
+
+
+/* =================================================================
+   PARTIE 1 : STRUCTURE GRILLE 2 COLONNES (col-2)
+   Nom de classe racine : col-2 (ou col-2-sep-tiret)
+   PAR DÉFAUT : Collé (Espace 0)
+   OPTIONS : espace-5, espace-20
+   ================================================================= */
+
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-2"] .grid-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+[class*="col-2"] .grid-column {
+    box-sizing: border-box !important;
+}
+
+/* Correctifs Visuels (Images & Titres) */
+[class*="col-2"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="col-2"] .headingWidget { margin-top: 30px !important; }
+
+
+/* --- 2. VERSION BUREAU (> 768px) --- */
+@media (min-width: 769px) {
+
+    /* --- PAR DÉFAUT (Collé / Espace 0) --- */
+    [class*="col-2"] .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important; 
+        margin: 0 !important;
+        /* padding: 0 !important;  <-- Modif demandée prise en compte */
+    }
+
+    /* --- OPTION : ESPACE 20 --- */
+    [class*="col-2"][class*="espace-20"] .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
+    }
+
+    /* --- OPTION : ESPACE 5 --- */
+    [class*="col-2"][class*="espace-5"] .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+}
+
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+    
+    /* > Par défaut */
+    [class*="col-2"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 */
+    [class*="col-2"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
+    }
+    
+    /* > Espace 5 */
+    [class*="col-2"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+
+
+    /* --- CAS B : STRETCHED (1 colonne) --- */
+    
+    /* > Par défaut */
+    [class*="col-2"].stretched-tablet .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-2"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+}
+
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+    
+    /* > Par défaut */
+    [class*="col-2"]:not(.stretched-mobile) .grid-content .grid-column {
+        width: 50% !important; flex: 0 0 50% !important;
+    }
+
+    /* > Espace 20 */
+    [class*="col-2"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; padding: 10px !important;
+        width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
+    }
+    
+    /* > Espace 5 */
+    [class*="col-2"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 10px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+
+
+    /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
+    
+    /* > Par défaut */
+    [class*="col-2"].stretched-mobile .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-2"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+}
+
+
+/* =================================================================
+   PARTIE 2 : EXTENSION SÉPARATEURS (sep-tiret)
+   CONDITION : Ne s'applique que SI AUCUN ESPACE n'est défini
+   ================================================================= */
+
+/* Configuration de base */
+[class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+    border-style: dashed !important;
+    border-color: rgba(150, 150, 150, 0.4) !important;
+    border-width: 0px !important;
+}
+
+/* Bureau */
+@media (min-width: 769px) {
+    /* Tiret vertical sur les impairs */
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:nth-child(odd) { 
+        border-right-width: 1px !important; 
+    }
+    /* Pas de tiret sur le dernier (s'il est impair par hasard, ou pair en fin de ligne) */
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:last-child { 
+        border-right-width: 0px !important; 
+    }
+}
+
+/* Tablette */
+@media (max-width: 768px) and (min-width: 481px) {
+    /* Non Stretched (2 colonnes) */
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
+        border-right-width: 1px !important; 
+    }
+    /* Bordure bas sur tout le monde sauf les 2 derniers (Gestion propre du 2xN) */
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) { 
+        border-bottom-width: 1px !important; 
+    }
+
+    /* Stretched (1 colonne) */
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { 
+        border-right-width: 0px !important; border-bottom-width: 1px !important; 
+    }
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { 
+        border-bottom-width: 0px !important; 
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    /* Non Stretched (2 colonnes) */
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
+        border-right-width: 1px !important; 
+    }
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-last-child(n+3) { 
+        border-bottom-width: 1px !important; 
+    }
+
+    /* Stretched (1 colonne) */
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { 
+        border-right-width: 0px !important; border-bottom-width: 1px !important; 
+    }
+    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { 
+        border-bottom-width: 0px !important; 
+    }
+}
+
+/* =================================================================
    PARTIE 1 : STRUCTURE GRILLE 3 COLONNES AVEC SÉPARATEUR (col-3s)
    Structure : [Contenu 49%] [Vide 2%] [Contenu 49%]
    PAR DÉFAUT : Collé (Espace 0)
