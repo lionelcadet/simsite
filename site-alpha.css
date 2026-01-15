@@ -1,0 +1,646 @@
+/* Titre */
+h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.text-widget-content ul {
+    margin-bottom: 0.5rem;
+}
+
+.col-2-bloc-intro-page h1 {
+    margin-bottom: 1.1rem; 
+}
+
+ul.breadcrumb {
+    font-family: 'Rubik';
+}
+
+/* Questions du FAQ */
+p.toggle-header {
+    line-height: 1.7;
+}
+
+.portfolio-filter {
+    margin-top: 35px;
+    margin-bottom: 0px;
+    background: #f5f6fa;
+    border-radius: 6px;
+}
+
+.portfolio-list-wrapper {
+    margin-top: 20px;
+}
+
+.theme footer.page-footer {
+    z-index: 0;
+    position: relative;
+}
+
+/* --- Trait séparateur - VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+.hr-title.fullwidth-separator>span {
+    width: 45px;
+    border-top-style: dashed;
+    border-top-width: thin;
+}
+}
+
+/* Hero Accueil */
+.hero-accueil h1 {
+    font-family: "Rubik", sans-serif; 
+    color:white !important;
+    font-weight: 700;
+    line-height: 1.5;;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px #000C;
+}
+
+.hero-accueil .grid-content:first-child > .grid-column:nth-child(2) {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+
+
+@media (max-width: 768px) {
+    [class*="bloc-titre"] .widget-row.with-centered-content .widget {
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu {
+        -webkit-box-shadow: 0 9px 34px -20px rgba(0, 0, 0, .21);
+        -moz-box-shadow: 0 9px 34px -20px rgba(0,0,0,.21);
+        box-shadow: 0 9px 34px -20px rgba(0, 0, 0, .21);
+    }
+}
+
+
+@media (max-width: 768px) {
+    [class*="col-3s-2contre1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child,
+      [class*="col-2-1par1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child {
+        padding-left: 7% !important;
+        padding-right: 7% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    [class*="mode-carte"][class*="ph6pr"] .grid-content > .grid-column {
+        padding-left :6% !important;
+        padding-right :6% !important;
+}
+}
+
+/* --- Taille Police Titre H2 Accueil  --- */
+@media (min-width: 769px) {
+    [class*="bloc-titre-accueil"] .text-widget-content h2 {
+    font-size: 30px !important;
+  }
+}
+
+/* --- Marge Titre Style 1 H2 page intermédiaire --- */
+[class*="barre-titre-page-style1"] .text-widget-content > h2 {
+  margin-bottom: 0px !important;
+}
+
+@media screen and (max-width: 768px) {
+    [class*="barre-titre-page-style1"] .text-widget-content > h2 {
+        font-size: 17px !important;
+    }
+}
+
+/* =================================================================
+   PARTIE 1 : STRUCTURE GRILLE 3 COLONNES AVEC SÉPARATEUR (col-3s)
+   Structure : [Contenu 49%] [Vide 2%] [Contenu 49%]
+   PAR DÉFAUT : Collé (Espace 0)
+   OPTIONS : espace-5, espace-20
+   ================================================================= */
+
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-3s"] .grid-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+[class*="col-3s"] .grid-column {
+    box-sizing: border-box !important;
+}
+
+/* Correctifs Visuels */
+[class*="col-3s"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="col-3s"] .headingWidget { margin-top: 30px !important; }
+
+
+/* --- 2. VERSION BUREAU (> 768px) --- */
+@media (min-width: 769px) {
+
+    /* --- GESTION DES LARGEURS DE BASE --- */
+    /* Colonnes Principales (1 et 3) */
+    [class*="col-3s"] .grid-content .grid-column:nth-child(1),
+    [class*="col-3s"] .grid-content .grid-column:nth-child(3) {
+        width: 49% !important; flex: 0 0 49% !important;
+        margin: 0 !important;
+    }
+    /* Colonne Séparateur (2) */
+    [class*="col-3s"] .grid-content .grid-column:nth-child(2) {
+        width: 2% !important; flex: 0 0 2% !important;
+        padding: 0 !important; margin: 0 !important;
+    }
+
+
+    /* --- OPTION : ESPACE 20 --- */
+    [class*="col-3s"][class*="espace-20"] .grid-content .grid-column:nth-child(odd) { /* 1 et 3 */
+        margin: 10px !important; padding: 15px !important;
+        width: calc(49% - 20px) !important; flex: 0 0 calc(49% - 20px) !important;
+    }
+    /* On annule les marges sur le séparateur pour ne pas casser la ligne */
+    [class*="col-3s"][class*="espace-20"] .grid-content .grid-column:nth-child(2) {
+        margin: 0 !important; padding: 0 !important;
+    }
+
+
+    /* --- OPTION : ESPACE 5 --- */
+    [class*="col-3s"][class*="espace-5"] .grid-content .grid-column:nth-child(odd) { /* 1 et 3 */
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(49% - 5px) !important; flex: 0 0 calc(49% - 5px) !important;
+    }
+    [class*="col-3s"][class*="espace-5"] .grid-content .grid-column:nth-child(2) {
+        margin: 0 !important; padding: 0 !important;
+    }
+}
+
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+
+
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+    [class*="col-3s"]:not(.stretched-tablet) .grid-content .grid-column {
+         width: 49% !important; flex: 0 0 49% !important; margin: 0 !important;
+    }
+
+    /* Colonne Séparateur (2) */
+    [class*="col-3s"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(2) {
+        width: 2% !important; flex: 0 0 2% !important;
+        padding: 0 !important; margin: 0 !important;
+    }
+  
+    /* > Espace 20 */
+    [class*="col-3s"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important; padding: 15px !important;
+        width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
+    }
+
+      /* IMPORTANT : On cache la colonne du milieu (2%) sur tablette*/
+    [class*="col-3s"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(2) {
+        display: none !important;
+    }
+  
+    /* > Espace 5 */
+    [class*="col-3s"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+
+        /* IMPORTANT : On cache la colonne du milieu (2%) sur tablette/mobile*/
+    [class*="col-3s"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(2) {
+        display: none !important;
+    }
+  
+    /* --- CAS B : STRETCHED (1 colonne) --- */
+    [class*="col-3s"].stretched-tablet .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-3s"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+}
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+    [class*="col-3s"]:not(.stretched-mobile) .grid-content .grid-column {
+         width: 49% !important; flex: 0 0 49% !important; margin: 0 !important;
+    }
+  
+    /* Colonne Séparateur (2) */
+    [class*="col-3s"]:not(.stretched-mobile) .grid-content .grid-column:nth-child(2) {
+        width: 2% !important; flex: 0 0 2% !important;
+        padding: 0 !important; margin: 0 !important;
+    }
+
+      /* > Espace 20 */
+    [class*="col-3s"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; padding: 10px !important;
+        width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
+    }
+    
+        /* IMPORTANT : On cache la colonne du milieu (2%) sur mobile*/
+    [class*="col-3s"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column:nth-child(2) {
+        display: none !important;
+    }
+    
+    /* > Espace 5 */
+    [class*="col-3s"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 10px !important;
+        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+    }
+
+   /* IMPORTANT : On cache la colonne du milieu (2%) sur mobile*/
+    [class*="col-3s"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column:nth-child(2) {
+        display: none !important;
+    }
+  
+    /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
+    [class*="col-3s"].stretched-mobile .grid-content .grid-column {
+        width: 100% !important; margin: 0 !important;
+    }
+
+    /* > Espace 20 (Stretched) */
+    [class*="col-3s"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    }
+}
+
+/* =================================================================
+   SYSTEME DE GRILLE INTELLIGENT & RESPONSIVE Col-5
+   Compatible avec les options "Stretched" (Tablette & Mobile)
+   Gestion automatique Pair/Impair (Dernier élément s'étire)
+   ================================================================= */
+
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-5s"] .grid-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+}
+
+/* --- 2. VERSION BUREAU (Ecran > 768px) --- */
+@media (min-width: 769px) {
+    [class*="col-5s"] .grid-content { justify-content: space-between !important; }
+    [class*="col-5s"] .grid-column { box-sizing: border-box !important; }
+
+    /* Espace 5 */
+    [class*="col-5s"][class*="espace-5"] .grid-content .grid-column-no-widgets { width: 5px !important; flex: 0 0 5px !important; min-width: 5px !important; }
+    [class*="col-5s"][class*="espace-5"] .grid-content .grid-column:not(.grid-column-no-widgets) {
+        width: calc((100% - 10px) / 3) !important; flex: 0 0 calc((100% - 10px) / 3) !important;
+    }
+
+    /* Espace 20 */
+    [class*="col-5s"][class*="espace-20"] .grid-content .grid-column-no-widgets { width: 20px !important; flex: 0 0 20px !important; min-width: 20px !important; }
+    [class*="col-5s"][class*="espace-20"] .grid-content .grid-column:not(.grid-column-no-widgets) {
+        width: calc((100% - 40px) / 3) !important; flex: 0 0 calc((100% - 40px) / 3) !important;
+    }
+
+    /* Espace 0 */
+    [class*="col-5s"][class*="espace-0"] .grid-content .grid-column-no-widgets { display: none !important; }
+    [class*="col-5s"][class*="espace-0"] .grid-content .grid-column:not(.grid-column-no-widgets) { width: 33.333% !important; flex: 0 0 33.333% !important; }
+  
+  
+}
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+    
+    /* On cache les séparateurs */
+    [class*="col-5s"] .grid-column-no-widgets { display: none !important; }
+    [class*="col-5s"] .grid-content .grid-column { box-sizing: border-box !important; }
+
+    /* --- CAS A : NON STRETCHED (Par défaut : 2 colonnes + Auto-fill) --- */
+    /* On active le flex-grow: 1 pour que le dernier élément impair prenne 100% */
+    
+    /* Mode Widget */
+    [class*="col-5s"][class*="mode-widget"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; flex-grow: 1 !important; margin: 0 !important;
+        /* max-width important pour permettre l'étirement */
+        max-width: 100% !important; flex-basis: 50% !important; 
+    }
+    
+    /* Mode Carte (Espace 20) */
+    [class*="col-5s"][class*="mode-carte"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important;
+      	padding-top : 15px !important;
+        padding-bottom : 15px !important;
+        width: calc(50% - 20px) !important; flex-basis: calc(50% - 20px) !important;
+        flex-grow: 1 !important; max-width: 100% !important;
+    }
+
+    /* Mode Carte (Espace 5) */
+    [class*="col-5s"][class*="mode-carte"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 15px !important;
+        width: calc(50% - 5px) !important; flex-basis: calc(50% - 5px) !important;
+        flex-grow: 1 !important; max-width: 100% !important;
+    }
+
+  /* Mode Carte (Espace 0) */
+    [class*="col-5s"][class*="mode-carte"][class*="espace-0"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 0 !important; 
+        padding: 0 !important; /* Pas de padding interne pour coller parfaitement */
+        width: 50% !important; 
+        flex-basis: 50% !important;
+        flex-grow: 1 !important; /* Permet au dernier impair de prendre 100% */
+        max-width: 100% !important;
+    }
+  
+    /* --- CAS B : STRETCHED (Si case cochée : 1 colonne avec marges) --- */
+    [class*="col-5s"][class*="mode-carte"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+        margin: 10px !important; width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
+    }
+    [class*="col-5s"][class*="mode-carte"][class*="espace-5"].stretched-tablet .grid-content .grid-column {
+        margin: 2.5px !important; width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
+    }
+    
+    /* Espacements internes Widget */
+    [class*="col-5s"][class*="mode-widget"][class*="espace-20"] .grid-content .grid-column { padding: 10px !important; }
+    [class*="col-5s"][class*="mode-widget"][class*="espace-5"] .grid-content .grid-column { padding: 2.5px !important; }
+      /* Marge icone sur mobile uniquement */
+    [class*="col-5s"][class*="mode-widget"] .grid-content .grid-column:last-child .iconSection {
+        margin-top: 0px !important;
+    }
+}
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+
+    /* On cache les séparateurs */
+    [class*="col-5s"] .grid-column-no-widgets { display: none !important; }
+    [class*="col-5s"] .grid-content .grid-column { box-sizing: border-box !important; }
+
+    /* --- CAS A : NON STRETCHED MOBILE (Par défaut : 2 colonnes + Auto-fill) --- */
+    /* C'est ici qu'on change le comportement par défaut du mobile pour faire du 2 cols */
+
+    /* Mode Widget */
+    [class*="col-5s"][class*="mode-widget"]:not(.stretched-mobile) .grid-content .grid-column {
+        width: 50% !important; flex-grow: 1 !important; margin: 0 !important;
+        max-width: 100% !important; flex-basis: 50% !important;
+    }
+    
+    /* Mode Carte (Espace 20) */
+    [class*="col-5s"][class*="mode-carte"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; /* Marge réduite sur mobile pour gagner de la place */
+        padding: 10px !important;
+        /* Calcul ajusté pour petits écrans */
+        width: calc(50% - 10px) !important; flex-basis: calc(50% - 10px) !important;
+        flex-grow: 1 !important; max-width: 100% !important;
+    }
+
+    /* Mode Carte (Espace 5) */
+    [class*="col-5s"][class*="mode-carte"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 2.5px !important; padding: 10px !important;
+        width: calc(50% - 5px) !important; flex-basis: calc(50% - 5px) !important;
+        flex-grow: 1 !important; max-width: 100% !important;
+    }
+
+    /* --- CAS B : STRETCHED MOBILE (Si case cochée : 1 colonne) --- */
+    /* Si "Stretched Mobile" est coché, on force 100% de large mais on garde les marges Mode Carte */
+    
+    [class*="col-5s"][class*="mode-carte"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+        margin: 10px !important; width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
+    }
+    [class*="col-5s"][class*="mode-carte"][class*="espace-5"].stretched-mobile .grid-content .grid-column {
+        margin: 2.5px !important; width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
+    }
+
+    /* Espacements internes Widget */
+    [class*="col-5s"][class*="mode-widget"][class*="espace-20"] .grid-content .grid-column { padding: 10px !important; }
+    [class*="col-5s"][class*="mode-widget"][class*="espace-5"] .grid-content .grid-column { padding: 2.5px !important; }
+    
+    /* Marge icone sur mobile uniquement */
+    [class*="col-5s"][class*="mode-widget"] .grid-content .grid-column:last-child .iconSection {
+        margin-top: 0px !important;
+    }
+}
+
+/* =================================================================
+  FOOTER AVANTAGES (Icônes Services)
+  Nom de classe : col-4-footer-avantages
+  ================================================================= */
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-4-footer-avantages"] .grid-content {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+}
+
+[class*="col-4-footer-avantages"] .grid-column {
+  box-sizing: border-box !important;
+  border-style: dashed !important;
+
+  /* Couleur du tiret : Identique au précédent (Gris léger) */
+  border-color: rgba(150, 150, 150, 0.4) !important; 
+  border-width: 0px !important; /* Reset */
+
+  /* Centrage du contenu car ce sont des icônes */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* On annule la marge parasite de 10px */
+[class*="col-4-footer-avantages"] .type3.icon-section .icon i {
+  line-height: 35px;
+}
+
+/* On annule la marge parasite de 10px */
+[class*="col-4-footer-avantages"] .type3.icon-section .icon-title {
+ margin-top: 0px !important;
+}
+
+[class*="col-4-footer-avantages"] .icon-section header h6 {
+  margin-bottom: 0px !important;
+}
+
+/* --- 2. VERSION BUREAU (> 768px) --- */
+@media (min-width: 769px) {
+
+  /* --- CORRECTIF ICONE : On annule la marge parasite de 10px --- */
+  [class*="col-4-footer-avantages"] .iconSection {
+    margin-top: 0px !important;
+  }
+
+  [class*="col-4-footer-avantages"] .grid-content .grid-column {
+    width: 25% !important;
+    flex: 0 0 25% !important;
+   padding-left: 15px !important;
+    padding-right: 15px !important;
+
+    /* Bordure à droite */
+    border-right-width: 1px !important; 
+  }
+
+  /* Pas de bordure pour le dernier */
+  [class*="col-4-footer-avantages"] .grid-content .grid-column:last-child {
+    border-right-width: 0px !important;
+  }
+}
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+
+@media (max-width: 768px) and (min-width: 481px) {
+
+  /* --- CORRECTIF ICONE : On annule la marge parasite de 10px --- */
+  [class*="col-4-footer-avantages"] .iconSection {
+margin-top: 0px !important;
+        padding: 0 0% !important;
+  }
+
+  /* --- CAS A : NON STRETCHED (2 colonnes par ligne) --- */
+  [class*="col-4-footer-avantages"]:not(.stretched-tablet) .grid-content .grid-column {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 0px !important;
+  }
+
+  /* Bordures 2x2 */
+  [class*="col-4-footer-avantages"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) {
+    border-right-width: 1px !important;
+  }
+
+  [class*="col-4-footer-avantages"]:not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) {
+    border-bottom-width: 1px !important;
+  }
+
+  /* --- CAS B : STRETCHED TABLET (1 colonne par ligne) --- */
+  [class*="col-4-footer-avantages"].stretched-tablet .grid-content .grid-column {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 1px !important;
+  }
+
+  [class*="col-4-footer-avantages"].stretched-tablet .grid-content .grid-column:last-child {
+    border-bottom-width: 0px !important;
+  }
+}
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+ 
+  /* --- CORRECTIF ICONE : On annule la marge parasite ici aussi --- */
+  [class*="col-4-footer-avantages"] .iconSection {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  /* Empilement systématique sur mobile */
+  [class*="col-4-footer-avantages"] .grid-content .grid-column {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 1px !important;
+  }
+
+  /* Pas de bordure sous le dernier */
+  [class*="col-4-footer-avantages"] .grid-content .grid-column:last-child {
+    border-bottom-width: 0px !important;
+  }
+}
+
+/* =================================================================
+   FOOTER INFOS (4 Colonnes avec Séparateurs Tirets)
+   Nom de classe : col-4-footer-infos
+   ================================================================= */
+
+/* --- 1. CONFIGURATION GLOBALE --- */
+[class*="col-4-footer-infos"] .grid-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+}
+
+[class*="col-4-footer-infos"] .grid-column {
+    box-sizing: border-box !important;
+    border-style: dashed !important;
+    /* Couleur du tiret : Gris léger (Ajuste le 0.4 pour changer la transparence) */
+    border-color: rgba(150, 150, 150, 0.4) !important; 
+    border-width: 0px !important; /* On reset les bordures par défaut */
+}
+
+/* --- 2. VERSION BUREAU (> 768px) --- */
+/* Affichage : 4 colonnes alignées */
+@media (min-width: 769px) {
+    
+    [class*="col-4-footer-infos"] .grid-content .grid-column {
+        width: 25% !important;
+        flex: 0 0 25% !important;
+
+      /* Bordure verticale à droite pour tout le monde... */
+        border-right-width: 1px !important; 
+    }
+
+    /* ... SAUF pour le tout dernier élément (le 4ème) */
+    [class*="col-4-footer-infos"] .grid-content .grid-column:last-child {
+        border-right-width: 0px !important;
+    }
+}
+
+/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
+
+    /* --- CAS A : NON STRETCHED (Par défaut : 2 colonnes par ligne) --- */
+    /* On crée une grille 2x2 */
+    [class*="col-4-footer-infos"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        
+        /* On nettoie les bordures desktop avant d'appliquer les nouvelles */
+        border-right-width: 0px !important;
+        border-bottom-width: 0px !important;
+    }
+
+    /* Bordure à DROITE pour les éléments IMPAIRS (Colonne de gauche : 1 et 3) */
+    [class*="col-4-footer-infos"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) {
+        border-right-width: 1px !important;
+    }
+
+    /* Bordure en BAS pour les éléments de la PREMIÈRE LIGNE (1 et 2) */
+    /* La formule :nth-last-child(n+3) cible tout le monde sauf les 2 derniers */
+    [class*="col-4-footer-infos"]:not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) {
+        border-bottom-width: 1px !important;
+    }
+
+    /* --- CAS B : STRETCHED TABLET (Si coché : 1 colonne par ligne) --- */
+    [class*="col-4-footer-infos"].stretched-tablet .grid-content .grid-column {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        border-right-width: 0px !important;
+        border-bottom-width: 1px !important; /* Ligne en dessous */
+    }
+    
+    /* Pas de bordure sous le dernier */
+    [class*="col-4-footer-infos"].stretched-tablet .grid-content .grid-column:last-child {
+        border-bottom-width: 0px !important;
+    }
+}
+
+/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+
+    /* Sur mobile, on empile tout (1 colonne), stretched ou pas */
+    
+    [class*="col-4-footer-infos"] .grid-content .grid-column {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        
+        /* Bordure en bas uniquement */
+        border-right-width: 0px !important;
+        border-bottom-width: 1px !important;
+    }
+
+    /* Pas de bordure en bas pour le tout dernier bloc */
+    [class*="col-4-footer-infos"] .grid-content .grid-column:last-child {
+        border-bottom-width: 0px !important;
+    }
+}
