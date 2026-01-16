@@ -1,5 +1,5 @@
 /* ======== CSS SITE ALPHA ======== 
-====== 15/01/2026 / 15:01:26 ======
+====== 16/01/2026 / 12:42:26 ======
 ===================================*/
 
 /* ========= Général ========== */
@@ -32,7 +32,108 @@ ul.breadcrumb {
 }
 
 /* ========= Header ========== */
+
+/* --- Icones Réseau Social - Menu Supérieur --- */
+a.social-media-button {
+    margin-right: 5px;
+}
+
 /* --- Menu Du Site --- */
+/* 1. Cible UNIQUEMENT le dernier élément du menu (Le conteneur du bouton) */
+.menu-widget.left nav > ul > li:last-child {
+    background-color: var(--color-primary) !important;
+    border-radius: 30px !important; /* 30px fait plus "bouton" que 8px, à toi de voir */
+    margin-left: 20px !important;   /* On l'écarte un peu des autres liens */
+    padding: 0 !important;          /* On reset le padding du conteneur */
+    border: none !important;
+}
+
+/* 2. Cible le LIEN (a) à l'intérieur pour la couleur et l'espace */
+.menu-widget.left nav > ul > li:last-child > a {
+    color: #ffffff !important;      /* Force le texte en blanc */
+    padding: 10px 20px !important;  /* C'est ici qu'on gère la taille du bouton */
+    display: inline-block !important;
+}
+
+/* 3. Optionnel : Petit effet au survol */
+.menu-widget.left nav > ul > li:last-child:hover {
+    opacity: 0.9;
+    transform: translateY(-1px); /* Petit effet de levier sympa */
+}
+
+/* --- BOUTON MENU MOBILE (Compatible Thème) --- */
+
+/* 1. Le Conteneur du dernier élément (Le bouton) */
+/* On cible le wrapper mobile -> le widget menu -> le dernier li */
+.mobile-header-wrapper .menu-widget nav > ul > li:last-child {
+    background-color: var(--color-primary) !important;
+    border-radius: 8px !important;  /* Ton choix de 8px */
+    
+    /* Positionnement */
+    margin-top: 20px !important;    /* On l'écarte du menu du haut */
+    margin-bottom: 10px !important; /* Marge en bas */
+    margin-left: 20px !important;   /* Marge gauche pour l'esthétique */
+    margin-right: 20px !important;  /* Marge droite pour l'esthétique */
+    
+    /* Reset des styles par défaut */
+    padding: 0 !important;
+    border: none !important;
+    text-align: center !important;  /* Centre le texte dans le bouton */
+    width: auto !important;         /* Laisse les marges gérer la largeur */
+}
+
+/* 2. Le Lien (Texte) à l'intérieur */
+.mobile-header-wrapper .menu-widget nav > ul > li:last-child > a {
+    color: #ffffff !important;      /* Texte blanc forcé */
+    display: block !important;      /* Le lien remplit tout le bloc */
+    padding: 12px 15px !important;  /* Hauteur du bouton */
+    font-weight: bold !important;
+    text-decoration: none !important;
+}
+
+/* 3. Petit effet au clic/survol */
+.mobile-header-wrapper .menu-widget nav > ul > li:last-child:active {
+    opacity: 0.8;
+}
+
+/* --- 1. MISE EN FORME DES COORDONNÉES (Textes) --- */
+/* On cible tous les widgets TEXTE dans le menu mobile */
+.mobile-header-wrapper .header-widget[data-type="headers/Text"] {
+    text-align: center !important; /* Centre le texte */
+    margin-bottom: 5px !important; /* Petit espace entre chaque ligne (Tél, Mail, Adresse) */
+}
+
+/* Optionnel : On s'assure que le paragraphe à l'intérieur suit le mouvement */
+.mobile-header-wrapper .header-widget[data-type="headers/Text"] p {
+    text-align: center !important;
+    margin: 0 !important;
+}
+
+
+/* --- 2. RÉSEAUX SOCIAUX (Centrage et Aération) --- */
+/* On cible le conteneur des réseaux sociaux */
+.mobile-header-wrapper .header-widget[data-type="headers/SocialMedia"] {
+    text-align: center !important; /* Centre le bloc global */
+    margin-top: 20px !important;   /* Espace au-dessus (séparation avec le texte) */
+    margin-bottom: 20px !important; /* Espace en bas */
+}
+
+/* On cible les BOUTONS (les liens autour des icônes) */
+.mobile-header-wrapper .social-media-button {
+    display: inline-block !important;
+    margin: 0 10px !important; /* 10px à gauche et à droite = 20px d'écart total entre les icônes */
+}
+
+/* On cible l'ICÔNE elle-même (le <i>) pour l'agrandir un peu si besoin */
+.mobile-header-wrapper .social-media-button i {
+    font-size: 16px !important;  /* Taille de l'icône plus lisible sur mobile */
+    width: 35px !important;      /* Largeur de la zone tactile */
+    height: 35px !important;     /* Hauteur de la zone tactile */
+    line-height: 35px !important; /* Centrage vertical */
+    border-radius: 50% !important; /* Rend le fond parfaitement rond */
+    /* background: rgba(255,255,255,0.1); Optionnel : fond léger */
+}
+
 @media (max-width: 768px) {
     .mobile-menu {
         -webkit-box-shadow: 0 9px 34px -20px rgba(0, 0, 0, .21);
@@ -1724,5 +1825,5 @@ p.toggle-header {
 }
 
 /* ===== FIN CSS SITE ALPHA =====
-   === 15/01/2026 / 15:01:26 ====
+   === 16/01/2026 / 12:42:26 ====
    ============================= */
