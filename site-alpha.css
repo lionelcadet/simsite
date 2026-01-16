@@ -1,7 +1,8 @@
 /* ======== CSS SITE ALPHA ======== 
-====== 16/01/2026 / 03:55:02 ======
+====== 16/01/2026 / 11:01:26 ======
 ===================================*/
 
+/* ========= Général ========== */
 /* Titre */
 h2, h3, h4, h5, h6 {
     margin-bottom: 0.5rem;
@@ -11,37 +12,14 @@ h1 {
     font-weight: 700;
 }
 
+/* --- Liste à puces ---*/
 .text-widget-content ul {
     margin-bottom: 0.5rem;
 }
 
-.col-2-bloc-intro-page h1 {
-    margin-bottom: 1.1rem; 
-}
-
+/* Fiche Produit : Fil d'Ariane */
 ul.breadcrumb {
     font-family: 'Rubik';
-}
-
-/* Questions du FAQ */
-p.toggle-header {
-    line-height: 1.7;
-}
-
-.portfolio-filter {
-    margin-top: 35px;
-    margin-bottom: 0px;
-    background: #f5f6fa;
-    border-radius: 6px;
-}
-
-.portfolio-list-wrapper {
-    margin-top: 20px;
-}
-
-.theme footer.page-footer {
-    z-index: 0;
-    position: relative;
 }
 
 /* --- Trait séparateur - VERSION MOBILE (Moins de 480px) --- */
@@ -53,29 +31,8 @@ p.toggle-header {
 }
 }
 
-/* Hero Accueil */
-.hero-accueil h1 {
-    font-family: "Rubik", sans-serif; 
-    color:white !important;
-    font-weight: 700;
-    line-height: 1.5;;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 5px #000C;
-}
-
-.hero-accueil .grid-content:first-child > .grid-column:nth-child(2) {
-        padding-top: 8px;
-        padding-bottom: 8px;
-    }
-
-
-
-@media (max-width: 768px) {
-    [class*="bloc-titre"] .widget-row.with-centered-content .widget {
-        margin-bottom: 0px;
-    }
-}
-
+/* ========= Header ========== */
+/* --- Menu Du Site --- */
 @media (max-width: 768px) {
     .mobile-menu {
         -webkit-box-shadow: 0 9px 34px -20px rgba(0, 0, 0, .21);
@@ -84,29 +41,95 @@ p.toggle-header {
     }
 }
 
+/* ========= Footer ========== */
+/* --- Boutique - Basculler le Footer en dessous du panier Fixe en bas  --- */
+.theme footer.page-footer {
+    z-index: 0;
+    position: relative;
+}
 
-@media (max-width: 768px) {
-    [class*="2box1s-2contre1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child,
-      [class*="col-2-1par1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child {
-        padding-left: 7% !important;
-        padding-right: 7% !important;
+/* ========= ELement du site ========== */
+
+/* Questions du FAQ */
+p.toggle-header {
+    line-height: 1.7;
+}
+
+/* ========= Page Portfolio ========== */
+/* Portfolio - Les filtres Photos */
+.portfolio-filter {
+    margin-top: 35px;
+    margin-bottom: 0px;
+    background: #f5f6fa;
+    border-radius: 6px;
+}
+
+/* Portfolio - Bloc Liste des Photos */
+.portfolio-list-wrapper {
+    margin-top: 20px;
+}
+
+/* ========= Page Accueil ========== */
+/* Hero Accueil */
+.hero-accueil h1 {
+    font-family: "Rubik", sans-serif; 
+    color:white !important;
+  font-size: 42px; 
+    font-weight: 700;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px #000C;
+}
+
+.hero-accueil h2 {
+    color: #ffffffc7;
+}
+
+.hero-accueil .grid-content:first-child > .grid-column:nth-child(2) {
+        padding-top: 8px;
+        padding-bottom: 8px;
     }
-}
 
 @media (max-width: 768px) {
-    [class*="mode-carte"][class*="ph6pr"] .grid-content > .grid-column {
-        padding-left :6% !important;
-        padding-right :6% !important;
+    
+    /* 1. Cibler la colonne du MILIEU (la 2ème) */
+    .hero-accueil .grid-content > .grid-column:nth-child(2) {
+        width: 218px !important;       /* Largeur fixe désirée */
+        flex: 0 0 218px !important;    /* On verrouille le flex : ne grandit pas, ne rétrécit pas */
+        min-width: 218px !important;   /* Sécurité supplémentaire */
+    }
+
+    /* 2. Cibler les colonnes de GAUCHE et DROITE (1ère et 3ème) */
+    /* On les rend "intelligentes" pour qu'elles prennent le reste de la place */
+    .hero-accueil .grid-content > .grid-column:first-child,
+    .hero-accueil .grid-content > .grid-column:last-child {
+        width: auto !important;        /* On écrase le width: 40% inline de Simvoly */
+        flex: 1 !important;            /* "flex-grow: 1" -> Occupe tout l'espace disponible restant */
+    }
+
+    /* Optionnel : Centrer le widget à l'intérieur si besoin */
+    .hero-accueil .grid-content > .grid-column:nth-child(2) .widget {
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+  
+      /* élargissement de la zone de texte H2 */
+  .hero-accueil .col13 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
 }
 }
 
-/* --- Taille Police Titre H2 Accueil  --- */
+/* --- Taille Police Titre H2 sur page Accueil  --- */
 @media (min-width: 769px) {
     [class*="bloc-titre-accueil"] .text-widget-content h2 {
     font-size: 30px !important;
   }
 }
 
+
+/* ========= Titre Intermédiaire Page ========== */
 /* --- Marge Titre Style 1 H2 page intermédiaire --- */
 [class*="barre-titre-page-style1"] .text-widget-content > h2 {
   margin-bottom: 0px !important;
@@ -115,6 +138,179 @@ p.toggle-header {
 @media screen and (max-width: 768px) {
     [class*="barre-titre-page-style1"] .text-widget-content > h2 {
         font-size: 17px !important;
+    }
+}
+
+/* ========= Titre Section Page - Intermédiaire Page ========== */
+/* --- Titre Standard --- */
+@media (max-width: 768px) {
+    [class*="bloc-titre"] .widget-row.with-centered-content .widget {
+        margin-bottom: 0px;
+    }
+}
+
+/* --- Titre Avec Bloc Image --- */
+.col-2-bloc-intro-page h1 {
+    margin-bottom: 1.1rem; 
+}
+
+/* ========= Général ========== */
+/* Titre */
+h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+/* --- Liste à puces ---*/
+.text-widget-content ul {
+    margin-bottom: 0.5rem;
+}
+
+/* Fiche Produit : Fil d'Ariane */
+ul.breadcrumb {
+    font-family: 'Rubik';
+}
+
+/* --- Trait séparateur - VERSION MOBILE (Moins de 480px) --- */
+@media (max-width: 480px) {
+.hr-title.fullwidth-separator>span {
+    width: 45px;
+    border-top-style: dashed;
+    border-top-width: thin;
+}
+}
+
+/* ========= Header ========== */
+/* --- Menu Du Site --- */
+@media (max-width: 768px) {
+    .mobile-menu {
+        -webkit-box-shadow: 0 9px 34px -20px rgba(0, 0, 0, .21);
+        -moz-box-shadow: 0 9px 34px -20px rgba(0,0,0,.21);
+        box-shadow: 0 9px 34px -20px rgba(0, 0, 0, .21);
+    }
+}
+
+/* ========= Footer ========== */
+/* --- Boutique - Basculler le Footer en dessous du panier Fixe en bas  --- */
+.theme footer.page-footer {
+    z-index: 0;
+    position: relative;
+}
+
+/* ========= ELement du site ========== */
+
+/* Questions du FAQ */
+p.toggle-header {
+    line-height: 1.7;
+}
+
+/* ========= Page Portfolio ========== */
+/* Portfolio - Les filtres Photos */
+.portfolio-filter {
+    margin-top: 35px;
+    margin-bottom: 0px;
+    background: #f5f6fa;
+    border-radius: 6px;
+}
+
+/* Portfolio - Bloc Liste des Photos */
+.portfolio-list-wrapper {
+    margin-top: 20px;
+}
+
+/* ========= Page Accueil ========== */
+/* Hero Accueil */
+.hero-accueil h1 {
+    font-family: "Rubik", sans-serif; 
+    color:white !important;
+  font-size: 42px; 
+    font-weight: 700;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px #000C;
+}
+
+.hero-accueil h2 {
+    color: #ffffffc7;
+}
+
+.hero-accueil .grid-content:first-child > .grid-column:nth-child(2) {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+@media (max-width: 768px) {
+    
+    /* 1. Cibler la colonne du MILIEU (la 2ème) */
+    .hero-accueil .grid-content > .grid-column:nth-child(2) {
+        width: 218px !important;       /* Largeur fixe désirée */
+        flex: 0 0 218px !important;    /* On verrouille le flex : ne grandit pas, ne rétrécit pas */
+        min-width: 218px !important;   /* Sécurité supplémentaire */
+    }
+
+    /* 2. Cibler les colonnes de GAUCHE et DROITE (1ère et 3ème) */
+    /* On les rend "intelligentes" pour qu'elles prennent le reste de la place */
+    .hero-accueil .grid-content > .grid-column:first-child,
+    .hero-accueil .grid-content > .grid-column:last-child {
+        width: auto !important;        /* On écrase le width: 40% inline de Simvoly */
+        flex: 1 !important;            /* "flex-grow: 1" -> Occupe tout l'espace disponible restant */
+    }
+
+    /* Optionnel : Centrer le widget à l'intérieur si besoin */
+    .hero-accueil .grid-content > .grid-column:nth-child(2) .widget {
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+  
+      /* élargissement de la zone de texte H2 */
+  .hero-accueil .col13 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+}
+}
+
+/* --- Taille Police Titre H2 sur page Accueil  --- */
+@media (min-width: 769px) {
+    [class*="bloc-titre-accueil"] .text-widget-content h2 {
+    font-size: 30px !important;
+  }
+}
+
+
+/* ========= Titre Intermédiaire Page ========== */
+/* --- Marge Titre Style 1 H2 page intermédiaire --- */
+[class*="barre-titre-page-style1"] .text-widget-content > h2 {
+  margin-bottom: 0px !important;
+}
+
+@media screen and (max-width: 768px) {
+    [class*="barre-titre-page-style1"] .text-widget-content > h2 {
+        font-size: 17px !important;
+    }
+}
+
+/* ========= Titre Section Page - Intermédiaire Page ========== */
+/* --- Titre Standard --- */
+@media (max-width: 768px) {
+    [class*="bloc-titre"] .widget-row.with-centered-content .widget {
+        margin-bottom: 0px;
+    }
+}
+
+/* --- Titre Avec Bloc Image --- */
+.col-2-bloc-intro-page h1 {
+    margin-bottom: 1.1rem; 
+}
+/* --- Conteneur du contenu Page Intermédiaire --- */
+@media (max-width: 768px) {
+    [class*="2box1s-2contre1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child,
+      [class*="col-2-1par1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child {
+        padding-left: 7% !important;
+        padding-right: 7% !important;
     }
 }
 
@@ -1528,5 +1724,5 @@ p.toggle-header {
 }
 
 /* ===== FIN CSS SITE ALPHA =====
-   === 16/01/2026 / 03:55:02 ====
+   === 16/01/2026 / 11:01:26 ====
    ============================= */
