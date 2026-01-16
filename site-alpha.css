@@ -1,5 +1,5 @@
 /* ======== CSS SITE ALPHA ======== 
-====== 15/01/2026 / 15:01:26 ======
+====== 16/01/2026 / 03:55:02 ======
 ===================================*/
 
 /* Titre */
@@ -86,7 +86,7 @@ p.toggle-header {
 
 
 @media (max-width: 768px) {
-    [class*="col-3s-2contre1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child,
+    [class*="2box1s-2contre1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child,
       [class*="col-2-1par1-txt1"][class*="ph7pr"] .grid-content > .grid-column:first-child {
         padding-left: 7% !important;
         padding-right: 7% !important;
@@ -119,105 +119,158 @@ p.toggle-header {
 }
 
 /* =================================================================
-   PARTIE 1 : STRUCTURE GRILLE 5 COLONNES (col-5)
-   Nom de classe racine : col-5 (ou col-5-sep-tiret)
+   PARTIE 1 : STRUCTURE GRILLE 5 COLONNES (l-grid-5)
+   Nom de classe racine : l-grid-5
    PAR DÉFAUT : Collé (Espace 0)
-   OPTIONS : espace-5, espace-20
+   OPTIONS : l-gap-s, l-gap-m
+   MODES : l-opt-widget, l-opt-card
    ================================================================= */
 
 /* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-5"] .grid-content {
+[class*="l-grid-5"] .grid-content {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: stretch !important;
     justify-content: center !important;
 }
 
-[class*="col-5"] .grid-column {
+[class*="l-grid-5"] .grid-column {
     box-sizing: border-box !important;
 }
 
-/* Correctifs Visuels (Images & Titres) */
-[class*="col-5"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
-[class*="col-5"] .headingWidget { margin-top: 30px !important; }
+/* --- LE KILL SWITCH --- */
+/* Neutralise les marges parasites des widgets à l'intérieur */
+[class*="l-grid-5"][class*="l-opt-widget"] .widget,
+[class*="l-grid-5"][class*="l-opt-widget"] .iconSection {
+    margin-top: 0px !important; margin-bottom: 0px !important;
+}
+
+/* --- GESTION DES PADDINGS DE COLONNE --- */
+/* Mode Widget -> 0 padding colonne */
+[class*="l-grid-5"][class*="l-opt-widget"] .grid-content .grid-column {
+    padding: 0 !important;
+}
+/* Mode Card -> Padding colonne nécessaire pour le fond */
+[class*="l-grid-5"][class*="l-opt-card"] .grid-content .grid-column {
+    padding: 15px !important;
+}
+@media (max-width: 480px) {
+    [class*="l-grid-5"][class*="l-opt-card"] .grid-content .grid-column { padding: 10px !important; }
+}
+
+/* --- TES PADDINGS INTERNES (Mis à jour avec ta modif) --- */
+
+/* PC : On garde le confort (40px haut/bas, 20px cotés) */
+[class*="l-grid-5"][class*="l-opt-widget"] .icon-section { 
+    padding: 40px 20px !important; 
+}
+
+/* Tablette : Padding horizontal à 0px (Ta modif) */
+@media (max-width: 768px) { 
+    [class*="l-grid-5"][class*="l-opt-widget"] .icon-section { 
+        padding-top: 35px !important;
+        padding-bottom: 35px !important;
+        padding-left: 0px !important;  /* BORD À BORD */
+        padding-right: 0px !important; /* BORD À BORD */
+    } 
+    /* Sécurité pour les widgets simples hors icon-section */
+    [class*="l-grid-5"][class*="l-opt-widget"] .widget {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+
+/* Mobile : Padding horizontal à 0px (Ta modif) */
+@media (max-width: 480px) { 
+    [class*="l-grid-5"][class*="l-opt-widget"] .icon-section { 
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+        padding-left: 15px !important;  /* BORD À BORD */
+        padding-right: 15px !important; /* BORD À BORD */
+    } 
+    /* Sécurité pour les widgets simples */
+    [class*="l-grid-5"][class*="l-opt-widget"] .widget {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+
+
+/* Correctifs Visuels */
+[class*="l-grid-5"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="l-grid-5"] .headingWidget { margin-top: 30px !important; }
 
 
 /* --- 2. VERSION BUREAU (> 768px) --- */
 @media (min-width: 769px) {
 
-    /* --- PAR DÉFAUT (Collé / Espace 0) --- */
-    [class*="col-5"] .grid-content .grid-column {
+    /* --- PAR DÉFAUT (Collé) --- */
+    [class*="l-grid-5"] .grid-content .grid-column {
         width: 20% !important; flex: 0 0 20% !important; 
         margin: 0 !important;
     }
 
-    /* --- OPTION : ESPACE 20 --- */
-    [class*="col-5"][class*="espace-20"] .grid-content .grid-column {
-        margin: 10px !important; padding: 15px !important;
+    /* --- OPTION : l-gap-m (20px) --- */
+    [class*="l-grid-5"][class*="l-gap-m"] .grid-content .grid-column {
+        margin: 10px !important; 
         width: calc(20% - 20px) !important; flex: 0 0 calc(20% - 20px) !important;
     }
 
-    /* --- OPTION : ESPACE 5 --- */
-    [class*="col-5"][class*="espace-5"] .grid-content .grid-column {
-        margin: 2.5px !important; padding: 15px !important;
+    /* --- OPTION : l-gap-s (5px) --- */
+    [class*="l-grid-5"][class*="l-gap-s"] .grid-content .grid-column {
+        margin: 2.5px !important; 
         width: calc(20% - 5px) !important; flex: 0 0 calc(20% - 5px) !important;
     }
 }
 
 
-/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+/* --- 3. VERSION TABLETTE (481px - 768px) --- */
 @media (max-width: 768px) and (min-width: 481px) {
 
     /* --- CAS A : NON STRETCHED (2 colonnes) --- */
-    
-    /* > Par défaut (Collé) */
-    [class*="col-5"]:not(.stretched-tablet) .grid-content .grid-column {
+    /* Par défaut */
+    [class*="l-grid-5"]:not(.stretched-tablet) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
     }
-    /* Le dernier élément (le 5ème) prend 100% de largeur */
-    [class*="col-5"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+    /* Le 5ème prend 100% */
+    [class*="l-grid-5"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
         width: 100% !important; flex: 0 0 100% !important;
     }
 
-    /* > Espace 20 */
-    [class*="col-5"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
-        margin: 10px !important; padding: 15px !important;
+    /* Gap M */
+    [class*="l-grid-5"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important; 
         width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
     }
-    [class*="col-5"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-5"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
         width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
         margin-top: 10px !important;
     }
     
-    /* > Espace 5 */
-    [class*="col-5"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
-        margin: 2.5px !important; padding: 15px !important;
+    /* Gap S */
+    [class*="l-grid-5"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 2.5px !important; 
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
-    [class*="col-5"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-5"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
         width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
         margin-top: 2.5px !important;
     }
 
-
     /* --- CAS B : STRETCHED (1 colonne) --- */
-    
-    /* > Par défaut */
-    [class*="col-5"].stretched-tablet .grid-content .grid-column {
+    [class*="l-grid-5"].stretched-tablet .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
-
-    /* > Espace 20 (Stretched) */
-    [class*="col-5"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
-        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    [class*="l-grid-5"][class*="l-gap-m"].stretched-tablet .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important;
     }
     
     /* Correctif Hauteur image auto */
-    [class*="col-5"] .grid-column:last-of-type .widget.imageWidget,
-    [class*="col-5"] .grid-column:last-of-type .widget.embedWidget,
-    [class*="col-5"] .grid-column:last-of-type .widget.map-widget, 
-    [class*="col-5"] .grid-column:last-of-type .widget.sliderWidget,
-    [class*="col-5"] .grid-column:last-of-type .widget.videoWidget {
+    [class*="l-grid-5"] .grid-column:last-of-type .widget.imageWidget,
+    [class*="l-grid-5"] .grid-column:last-of-type .widget.embedWidget,
+    [class*="l-grid-5"] .grid-column:last-of-type .widget.map-widget, 
+    [class*="l-grid-5"] .grid-column:last-of-type .widget.sliderWidget,
+    [class*="l-grid-5"] .grid-column:last-of-type .widget.videoWidget {
         max-height: initial;
     }
 }
@@ -227,45 +280,39 @@ p.toggle-header {
 @media (max-width: 480px) {
 
     /* --- CAS A : NON STRETCHED (2 colonnes) --- */
-    
-    /* > Par défaut */
-    [class*="col-5"]:not(.stretched-mobile) .grid-content .grid-column {
+    /* Par défaut */
+    [class*="l-grid-5"]:not(.stretched-mobile) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important;
     }
-    [class*="col-5"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-5"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
         width: 100% !important; flex: 0 0 100% !important;
     }
 
-    /* > Espace 20 */
-    [class*="col-5"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
-        margin: 5px !important; padding: 10px !important;
+    /* Gap M */
+    [class*="l-grid-5"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; 
         width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
     }
-    [class*="col-5"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-5"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
         width: calc(100% - 10px) !important; flex: 0 0 calc(100% - 10px) !important;
     }
     
-    /* > Espace 5 */
-    [class*="col-5"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
-        margin: 2.5px !important; padding: 10px !important;
+    /* Gap S */
+    [class*="l-grid-5"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 2.5px !important; 
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
-    [class*="col-5"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-5"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
         width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
         margin: 2.5px !important;
     }
 
-
     /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
-    
-    /* > Par défaut */
-    [class*="col-5"].stretched-mobile .grid-content .grid-column {
+    [class*="l-grid-5"].stretched-mobile .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
-
-    /* > Espace 20 (Stretched) */
-    [class*="col-5"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
-        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
+    [class*="l-grid-5"][class*="l-gap-m"].stretched-mobile .grid-content .grid-column {
+        width: calc(100% - 20px) !important; margin: 10px !important;
     }
 }
 
@@ -276,7 +323,7 @@ p.toggle-header {
    ================================================================= */
 
 /* Configuration de base */
-[class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+[class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-column {
     border-style: dashed !important;
     border-color: rgba(150, 150, 150, 0.4) !important;
     border-width: 0px !important;
@@ -284,125 +331,121 @@ p.toggle-header {
 
 /* Bureau (5 Colonnes) */
 @media (min-width: 769px) {
-    /* Tiret vertical sur tous sauf les multiples de 5 (5, 10, 15...) */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:not(:nth-child(5n)) { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column:not(:nth-child(5n)) { 
         border-right-width: 1px !important; 
     }
-    
-    /* MARGE TOP 25px : À partir de la 2ème ligne (donc le 6ème élément) */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:nth-child(n+6) {
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column:nth-child(n+6) {
         margin-top: 25px !important;
     }
 }
 
 /* Tablette (2 Colonnes) */
 @media (max-width: 768px) and (min-width: 481px) {
-    /* Non Stretched (2x2) */
-    
-    /* Tiret vertical sur les impairs (colonne gauche) */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
         border-right-width: 1px !important; 
     }
-    
-    /* Cas particulier du dernier élément (5ème) : PAS de bordure droite */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:last-child { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:last-child { 
         border-right-width: 0px !important; 
     }
-    
-    /* Bordure bas sur tout le monde sauf le dernier */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:not(:last-child) { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:not(:last-child) { 
         border-bottom-width: 1px !important; 
     }
-
-    /* MARGE TOP 25px : À partir du 3ème élément */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(n+3) {
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(n+3) {
         margin-top: 25px !important;
     }
-
-    /* Stretched (1 colonne) */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { 
+    /* Stretched */
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column { 
         border-right-width: 0px !important; border-bottom-width: 1px !important; 
     }
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column:last-child { 
         border-bottom-width: 0px !important; 
     }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-    /* Non Stretched (2 colonnes) */
-    
-    /* Tiret vertical sur les impairs */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
         border-right-width: 1px !important; 
     }
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:last-child { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:last-child { 
         border-right-width: 0px !important; 
     }
-    
-    /* Bordure bas sauf le dernier */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:not(:last-child) { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:not(:last-child) { 
         border-bottom-width: 1px !important; 
     }
-
-    /* MARGE TOP 25px : À partir du 3ème élément */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(n+3) {
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(n+3) {
         margin-top: 25px !important;
     }
-
-    /* Stretched (1 colonne) */
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { 
+    /* Stretched */
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column { 
         border-right-width: 0px !important; border-bottom-width: 1px !important; 
     }
-    [class*="col-5"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { 
+    [class*="l-grid-5"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column:last-child { 
         border-bottom-width: 0px !important; 
     }
 }
 
 /* =================================================================
-   PARTIE 1 : STRUCTURE GRILLE 4 COLONNES (col-4)
-   Nom de classe racine : col-4 (ou col-4-sep-tiret)
+   PARTIE 1 : STRUCTURE GRILLE 4 COLONNES (l-grid-4)
+   Nom de classe racine : l-grid-4
    PAR DÉFAUT : Collé (Espace 0)
-   OPTIONS : espace-5, espace-20
+   OPTIONS : l-gap-s, l-gap-m
    ================================================================= */
 
 /* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-4"] .grid-content {
+[class*="l-grid-4"] .grid-content {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: stretch !important;
     justify-content: center !important;
 }
 
-[class*="col-4"] .grid-column {
+[class*="l-grid-4"] .grid-column {
     box-sizing: border-box !important;
 }
 
-/* Correctifs Visuels (Images & Titres) */
-[class*="col-4"] .image-box .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
-[class*="col-4"] .headingWidget { margin-top: 30px !important; }
+/* --- LE KILL SWITCH (Neutralisation Widgets) --- */
+[class*="l-grid-4"][class*="l-opt-widget"] .widget,
+[class*="l-grid-4"][class*="l-opt-widget"] .iconSection {
+    margin-top: 0px !important; margin-bottom: 0px !important;
+}
+
+/* --- TES PADDINGS SUR MESURE --- */
+/* PC */
+[class*="l-grid-4"][class*="l-opt-widget"] .icon-section { padding: 40px 20px !important; }
+/* Tablette */
+@media (max-width: 768px) { [class*="l-grid-4"][class*="l-opt-widget"] .icon-section { padding: 35px 20px !important; } }
+/* Mobile */
+@media (max-width: 480px) { [class*="l-grid-4"][class*="l-opt-widget"] .icon-section { padding: 30px 25px !important; } }
+
+/* Correctifs Images et Titres */
+[class*="l-grid-4"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="l-grid-4"] .headingWidget { margin-top: 30px !important; }
 
 
 /* --- 2. VERSION BUREAU (> 768px) --- */
 @media (min-width: 769px) {
 
     /* --- PAR DÉFAUT (Collé / Espace 0) --- */
-    [class*="col-4"] .grid-content .grid-column {
+    [class*="l-grid-4"] .grid-content .grid-column {
         width: 25% !important; flex: 0 0 25% !important; 
         margin: 0 !important;
     }
 
     /* --- OPTION : ESPACE 20 --- */
-    [class*="col-4"][class*="espace-20"] .grid-content .grid-column {
+    [class*="l-grid-4"][class*="l-gap-m"] .grid-content .grid-column {
         margin: 10px !important; padding: 15px !important;
         width: calc(25% - 20px) !important; flex: 0 0 calc(25% - 20px) !important;
     }
 
     /* --- OPTION : ESPACE 5 --- */
-    [class*="col-4"][class*="espace-5"] .grid-content .grid-column {
+    [class*="l-grid-4"][class*="l-gap-s"] .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
         width: calc(25% - 5px) !important; flex: 0 0 calc(25% - 5px) !important;
     }
+
+    /* Padding spécifique Mode Card PC */
+    [class*="l-grid-4"][class*="l-opt-card"] .grid-column { padding: 15px !important; }
 }
 
 
@@ -412,34 +455,36 @@ p.toggle-header {
     /* --- CAS A : NON STRETCHED (2 colonnes par ligne) --- */
     
     /* > Par défaut */
-    [class*="col-4"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-4"]:not(.stretched-tablet) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
     }
 
     /* > Espace 20 */
-    [class*="col-4"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-4"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 10px !important; padding: 15px !important;
         width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
     }
     
     /* > Espace 5 */
-    [class*="col-4"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-4"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
 
-
     /* --- CAS B : STRETCHED (1 colonne) --- */
     
     /* > Par défaut */
-    [class*="col-4"].stretched-tablet .grid-content .grid-column {
+    [class*="l-grid-4"].stretched-tablet .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
 
     /* > Espace 20 (Stretched) */
-    [class*="col-4"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+    [class*="l-grid-4"][class*="l-gap-m"].stretched-tablet .grid-content .grid-column {
         width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
     }
+
+    /* Padding spécifique Mode Card Tablette */
+    [class*="l-grid-4"][class*="l-opt-card"] .grid-column { padding: 15px !important; }
 }
 
 
@@ -449,44 +494,46 @@ p.toggle-header {
     /* --- CAS A : NON STRETCHED (2 colonnes) --- */
     
     /* > Par défaut */
-    [class*="col-4"]:not(.stretched-mobile) .grid-content .grid-column {
+    [class*="l-grid-4"]:not(.stretched-mobile) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important;
     }
 
-    /* > Espace 20 */
-    [class*="col-4"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+    /* > Espace 20 (Optimisé 5px marge) */
+    [class*="l-grid-4"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 5px !important; padding: 10px !important;
         width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
     }
     
-    /* > Espace 5 */
-    [class*="col-4"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+    /* > Espace 5 (Optimisé 2.5px marge) */
+    [class*="l-grid-4"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 2.5px !important; padding: 10px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
 
-
     /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
     
     /* > Par défaut */
-    [class*="col-4"].stretched-mobile .grid-content .grid-column {
+    [class*="l-grid-4"].stretched-mobile .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
 
     /* > Espace 20 (Stretched) */
-    [class*="col-4"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+    [class*="l-grid-4"][class*="l-gap-m"].stretched-mobile .grid-content .grid-column {
         width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
     }
+    
+    /* Padding spécifique Mode Card Mobile */
+    [class*="l-grid-4"][class*="l-opt-card"] .grid-column { padding: 10px !important; }
 }
 
 
 /* =================================================================
-   PARTIE 2 : EXTENSION SÉPARATEURS (sep-tiret)
+   PARTIE 2 : EXTENSION SÉPARATEURS (l-sep-tiret)
    CONDITION : Ne s'applique que SI AUCUN ESPACE n'est défini
    ================================================================= */
 
 /* Configuration de base */
-[class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+[class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-column {
     border-style: dashed !important;
     border-color: rgba(150, 150, 150, 0.4) !important;
     border-width: 0px !important;
@@ -495,18 +542,13 @@ p.toggle-header {
 /* --- BUREAU (4 Colonnes par ligne) --- */
 @media (min-width: 769px) {
     /* Tiret vertical sur tous sauf le dernier de la ligne (4, 8, 12...) */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:not(:nth-child(4n)) { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column:not(:nth-child(4n)) { 
         border-right-width: 1px !important; 
     }
     
-    /* Bordure bas pour toutes les lignes sauf la dernière (si plus de 4 items) */
-    /* On cible tout le monde, et on l'enlève aux 4 derniers via nth-last-child, 
-       mais pour faire simple sur Simvoly on va gérer le margin-top principalement */
-
     /* MARGE TOP 25px : Pour les éléments de la 2ème ligne et suivantes (5, 6, 7...) */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:nth-child(n+5) {
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column:nth-child(n+5) {
         margin-top: 25px !important;
-        /* Optionnel : ajouter une bordure top ou bottom si tu as plusieurs lignes sur bureau */
     }
 }
 
@@ -515,25 +557,25 @@ p.toggle-header {
     /* Non Stretched (2x2) */
     
     /* Tiret vertical sur les impairs (colonne gauche) */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
         border-right-width: 1px !important; 
     }
     
     /* Bordure bas sur tout le monde sauf les 2 derniers */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) { 
         border-bottom-width: 1px !important; 
     }
 
     /* MARGE TOP 25px : À partir du 3ème élément (2ème ligne) */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(n+3) {
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(n+3) {
         margin-top: 25px !important;
     }
 
     /* Stretched (1 colonne) */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column { 
         border-right-width: 0px !important; border-bottom-width: 1px !important; 
     }
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column:last-child { 
         border-bottom-width: 0px !important; 
     }
 }
@@ -543,74 +585,91 @@ p.toggle-header {
     /* Non Stretched (2 colonnes) */
     
     /* Tiret vertical sur les impairs */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
         border-right-width: 1px !important; 
     }
     
     /* Bordure bas sauf les 2 derniers */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-last-child(n+3) { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-last-child(n+3) { 
         border-bottom-width: 1px !important; 
     }
 
     /* MARGE TOP 25px : À partir du 3ème élément */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(n+3) {
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(n+3) {
         margin-top: 25px !important;
     }
 
     /* Stretched (1 colonne) */
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column { 
         border-right-width: 0px !important; border-bottom-width: 1px !important; 
     }
-    [class*="col-4"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { 
+    [class*="l-grid-4"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column:last-child { 
         border-bottom-width: 0px !important; 
     }
 }
 
 /* =================================================================
-   BLOC 3 COLONNES INTELLIGENT (Services, Images...)
-   Nom de classe : col-3
-   PAR DÉFAUT : Collé (Espace 0)
-   OPTIONS : espace-5, espace-20
+   L-GRID-3 SYSTEM (Structure 3 colonnes sans séparateur physique)
+   Nom de classe : l-grid-3
+   Modes : l-opt-widget, l-opt-card
+   Options : l-gap-none, l-gap-s, l-gap-m, l-sep-tiret
    ================================================================= */
 
 /* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-3"] .grid-content {
+[class*="l-grid-3"] .grid-content {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: stretch !important;
     justify-content: center !important;
 }
 
-[class*="col-3"] .grid-column {
+[class*="l-grid-3"] .grid-column {
     box-sizing: border-box !important;
 }
 
+/* --- LE KILL SWITCH (AJOUTÉ) --- */
+/* Neutralise les marges parasites des widgets à l'intérieur */
+[class*="l-grid-3"][class*="l-opt-widget"] .widget,
+[class*="l-grid-3"][class*="l-opt-widget"] .iconSection {
+    margin-top: 0px !important; margin-bottom: 0px !important;
+}
+
+/* --- TES PADDINGS SUR MESURE (AJOUTÉ) --- */
+/* PC */
+[class*="l-grid-3"][class*="l-opt-widget"] .icon-section { padding: 40px 20px !important; }
+/* Tablette */
+@media (max-width: 768px) { [class*="l-grid-3"][class*="l-opt-widget"] .icon-section { padding: 35px 20px !important; } }
+/* Mobile */
+@media (max-width: 480px) { [class*="l-grid-3"][class*="l-opt-widget"] .icon-section { padding: 30px 25px !important; } }
+
+
 /* Correctifs Images et Titres */
-[class*="col-3"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
-[class*="col-3"] .headingWidget { margin-top: 30px !important; }
+[class*="l-grid-3"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="l-grid-3"] .headingWidget { margin-top: 30px !important; }
 
 /* --- 2. VERSION BUREAU (> 768px) --- */
 @media (min-width: 769px) {
 
     /* --- COMPORTEMENT PAR DÉFAUT (Collé / Espace 0) --- */
-    /* S'applique si aucune classe espace-XX n'est présente */
-    [class*="col-3"] .grid-content .grid-column {
+    [class*="l-grid-3"] .grid-content .grid-column {
         width: 33.333% !important; flex: 0 0 33.333% !important; 
         margin: 0 !important;
     }
 
     /* --- OPTION : ESPACE 20 --- */
-    /* Mode Carte + Espace 20 */
-    [class*="col-3"][class*="espace-20"] .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-m"] .grid-content .grid-column {
         margin: 10px !important; padding: 15px !important;
         width: calc(33.333% - 20px) !important; flex: 0 0 calc(33.333% - 20px) !important;
     }
 
     /* --- OPTION : ESPACE 5 --- */
-    [class*="col-3"][class*="espace-5"] .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-s"] .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
         width: calc(33.333% - 5px) !important; flex: 0 0 calc(33.333% - 5px) !important;
     }
+    
+    /* Padding spécifique Mode Card PC */
+    [class*="l-grid-3"][class*="l-opt-card"] .grid-column { padding: 15px !important; }
 }
 
 /* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
@@ -619,50 +678,53 @@ p.toggle-header {
     /* --- CAS A : NON STRETCHED (2 colonnes + 1 dessous) --- */
 
     /* > PAR DÉFAUT (Collé / Espace 0) */
-    [class*="col-3"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-3"]:not(.stretched-tablet) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
     }
     /* Force le dernier élément (le 3ème) à prendre 100% */
-    [class*="col-3"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-3"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
         width: 100% !important; flex: 0 0 100% !important;
     }
 
     /* > OPTION ESPACE 20 */
-    [class*="col-3"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 10px !important; padding: 15px !important;
         width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
     }
-    [class*="col-3"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-3"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
         width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
         margin-top: 10px !important; /* Reset marge standard */
     }
 
     /* > OPTION ESPACE 5 */
-    [class*="col-3"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
-    [class*="col-3"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-3"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) {
         width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
         margin-top: 2.5px !important;
     }
 
     /* --- CAS B : STRETCHED (1 colonne) --- */
-    [class*="col-3"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-m"].stretched-tablet .grid-content .grid-column {
         width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
     }
     /* Stretched par défaut (collé) */
-    [class*="col-3"].stretched-tablet .grid-content .grid-column {
+    [class*="l-grid-3"].stretched-tablet .grid-content .grid-column {
         width: 100% !important; margin: 0 !important; 
     }
   
-  /* Correctif Hauteur image auto */
-    [class*="col-3"] .grid-column:last-of-type .widget.imageWidget,
-    [class*="col-3"] .grid-column:last-of-type .widget.embedWidget,
-    [class*="col-3"] .grid-column:last-of-type .widget.imageWidget,
-    [class*="col-3"] .grid-column:last-of-type .widget.map-widget, 
-    [class*="col-3"] .grid-column:last-of-type .widget.sliderWidget,
-    [class*="col-3"] .grid-column:last-of-type .widget.videoWidget {
+    /* Padding spécifique Mode Card Tablette */
+    [class*="l-grid-3"][class*="l-opt-card"] .grid-column { padding: 15px !important; }
+  
+    /* Correctif Hauteur image auto */
+    [class*="l-grid-3"] .grid-column:last-of-type .widget.imageWidget,
+    [class*="l-grid-3"] .grid-column:last-of-type .widget.embedWidget,
+    [class*="l-grid-3"] .grid-column:last-of-type .widget.imageWidget,
+    [class*="l-grid-3"] .grid-column:last-of-type .widget.map-widget, 
+    [class*="l-grid-3"] .grid-column:last-of-type .widget.sliderWidget,
+    [class*="l-grid-3"] .grid-column:last-of-type .widget.videoWidget {
         max-height: initial;
     }
 }
@@ -673,51 +735,54 @@ p.toggle-header {
     /* --- CAS A : NON STRETCHED --- */
     
     /* > PAR DÉFAUT (Collé) */
-    [class*="col-3"]:not(.stretched-mobile) .grid-content .grid-column {
+    [class*="l-grid-3"]:not(.stretched-mobile) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important; 
     }
-    [class*="col-3"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-3"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
         width: 100% !important; flex: 0 0 100% !important;
     }
 
     /* > ESPACE 20 */
-    [class*="col-3"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 5px !important; padding: 10px !important;
         width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
     }
-    [class*="col-3"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+    [class*="l-grid-3"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
         width: calc(100% - 10px) !important; flex: 0 0 calc(100% - 10px) !important;
     }
     
     /* > ESPACE 5 */
-    [class*="col-3"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 2.5px !important; padding: 10px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
   
-   [class*="col-3"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
+   [class*="l-grid-3"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) {
         margin: 2.5px !important; padding: 10px !important;
         width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
     }
 
 
     /* --- CAS B : STRETCHED MOBILE --- */
-    [class*="col-3"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+    [class*="l-grid-3"][class*="l-gap-m"].stretched-mobile .grid-content .grid-column {
         width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
     }
-    [class*="col-3"].stretched-mobile .grid-content .grid-column {
+    [class*="l-grid-3"].stretched-mobile .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
+    
+    /* Padding spécifique Mode Card Mobile */
+    [class*="l-grid-3"][class*="l-opt-card"] .grid-column { padding: 10px !important; }
 }
 
 /* =================================================================
-   EXTENSION : SÉPARATEURS TIRETS (sep-tiret)
+   EXTENSION : SÉPARATEURS TIRETS (l-sep-tiret)
    CONDITION : Ne s'applique que SI AUCUN ESPACE n'est défini
    ================================================================= */
 
 /* Configuration de base */
-/* On cible col-3 avec sep-tiret, MAIS qui n'a PAS espace-20 NI espace-5 */
-[class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+/* On cible l-grid-3 avec l-sep-tiret, MAIS qui n'a PAS l-gap-m NI l-gap-s */
+[class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-column {
     border-style: dashed !important;
     border-color: rgba(150, 150, 150, 0.4) !important;
     border-width: 0px !important;
@@ -725,84 +790,101 @@ p.toggle-header {
 
 /* Bureau */
 @media (min-width: 769px) {
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column { border-right-width: 1px !important; }
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column { border-right-width: 1px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
 }
 
 /* Tablette */
 @media (max-width: 768px) and (min-width: 481px) {
     /* Non Stretched */
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { border-right-width: 1px !important; }
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:not(:last-child) { border-bottom-width: 1px !important; }
-/* Marge spéciale pour le 3ème élément SEULEMENT s'il y a des tirets */
-  [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) { margin-top : 25px !important;}
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { border-right-width: 1px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:not(:last-child) { border-bottom-width: 1px !important; }
+    /* Marge spéciale pour le 3ème élément SEULEMENT s'il y a des tirets */
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:last-child:nth-child(odd) { margin-top : 25px !important;}
 
     /* Stretched */
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { border-right-width: 0px !important; border-bottom-width: 1px !important; }
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { border-bottom-width: 0px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column { border-right-width: 0px !important; border-bottom-width: 1px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column:last-child { border-bottom-width: 0px !important; }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
     /* Non Stretched */
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { border-right-width: 1px !important; }
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:not(:last-child) { border-bottom-width: 1px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { border-right-width: 1px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:last-child { border-right-width: 0px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:not(:last-child) { border-bottom-width: 1px !important; }
     /* Marge spéciale pour le 3ème élément SEULEMENT s'il y a des tirets */
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) { margin-top : 25px !important;}
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:last-child:nth-child(odd) { margin-top : 25px !important;}
   
     /* Stretched */
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { border-right-width: 0px !important; border-bottom-width: 1px !important; }
-    [class*="col-3"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { border-bottom-width: 0px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column { border-right-width: 0px !important; border-bottom-width: 1px !important; }
+    [class*="l-grid-3"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column:last-child { border-bottom-width: 0px !important; }
 }
 
-
 /* =================================================================
-   PARTIE 1 : STRUCTURE GRILLE 2 COLONNES (col-2)
-   Nom de classe racine : col-2 (ou col-2-sep-tiret)
-   PAR DÉFAUT : Collé (Espace 0)
-   OPTIONS : espace-5, espace-20
+   L-GRID-2 SYSTEM (Structure 2 colonnes sans séparateur physique)
+   Nom de classe : l-grid-2
+   Modes : l-opt-widget, l-opt-card
+   Options : l-gap-none, l-gap-s, l-gap-m, l-sep-tiret
    ================================================================= */
 
 /* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-2"] .grid-content {
+[class*="l-grid-2"] .grid-content {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: stretch !important;
     justify-content: center !important;
 }
 
-[class*="col-2"] .grid-column {
+[class*="l-grid-2"] .grid-column {
     box-sizing: border-box !important;
 }
 
+/* --- LE KILL SWITCH (AJOUTÉ) --- */
+/* Neutralise les marges parasites des widgets à l'intérieur */
+[class*="l-grid-2"][class*="l-opt-widget"] .widget,
+[class*="l-grid-2"][class*="l-opt-widget"] .iconSection {
+    margin-top: 0px !important; margin-bottom: 0px !important;
+}
+
+/* --- TES PADDINGS SUR MESURE (AJOUTÉ) --- */
+/* PC */
+[class*="l-grid-2"][class*="l-opt-widget"] .icon-section { padding: 40px 20px !important; }
+/* Tablette */
+@media (max-width: 768px) { [class*="l-grid-2"][class*="l-opt-widget"] .icon-section { padding: 35px 20px !important; } }
+/* Mobile */
+@media (max-width: 480px) { [class*="l-grid-2"][class*="l-opt-widget"] .icon-section { padding: 30px 25px !important; } }
+
+
 /* Correctifs Visuels (Images & Titres) */
-[class*="col-2"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
-[class*="col-2"] .headingWidget { margin-top: 30px !important; }
+[class*="l-grid-2"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
+[class*="l-grid-2"] .headingWidget { margin-top: 30px !important; }
 
 
 /* --- 2. VERSION BUREAU (> 768px) --- */
 @media (min-width: 769px) {
 
     /* --- PAR DÉFAUT (Collé / Espace 0) --- */
-    [class*="col-2"] .grid-content .grid-column {
+    [class*="l-grid-2"] .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important; 
         margin: 0 !important;
-        /* padding: 0 !important;  <-- Modif demandée prise en compte */
     }
 
     /* --- OPTION : ESPACE 20 --- */
-    [class*="col-2"][class*="espace-20"] .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-m"] .grid-content .grid-column {
         margin: 10px !important; padding: 15px !important;
         width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
     }
 
     /* --- OPTION : ESPACE 5 --- */
-    [class*="col-2"][class*="espace-5"] .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-s"] .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
+    
+    /* Padding spécifique Mode Card PC */
+    [class*="l-grid-2"][class*="l-opt-card"] .grid-column { padding: 15px !important; }
 }
 
 
@@ -812,18 +894,18 @@ p.toggle-header {
     /* --- CAS A : NON STRETCHED (2 colonnes) --- */
     
     /* > Par défaut */
-    [class*="col-2"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-2"]:not(.stretched-tablet) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important; margin: 0 !important;
     }
 
     /* > Espace 20 */
-    [class*="col-2"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 10px !important; padding: 15px !important;
         width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
     }
     
     /* > Espace 5 */
-    [class*="col-2"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
@@ -832,14 +914,17 @@ p.toggle-header {
     /* --- CAS B : STRETCHED (1 colonne) --- */
     
     /* > Par défaut */
-    [class*="col-2"].stretched-tablet .grid-content .grid-column {
+    [class*="l-grid-2"].stretched-tablet .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
 
     /* > Espace 20 (Stretched) */
-    [class*="col-2"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-m"].stretched-tablet .grid-content .grid-column {
         width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
     }
+    
+    /* Padding spécifique Mode Card Tablette */
+    [class*="l-grid-2"][class*="l-opt-card"] .grid-column { padding: 15px !important; }
 }
 
 
@@ -849,18 +934,18 @@ p.toggle-header {
     /* --- CAS A : NON STRETCHED (2 colonnes) --- */
     
     /* > Par défaut */
-    [class*="col-2"]:not(.stretched-mobile) .grid-content .grid-column {
+    [class*="l-grid-2"]:not(.stretched-mobile) .grid-content .grid-column {
         width: 50% !important; flex: 0 0 50% !important;
     }
 
     /* > Espace 20 */
-    [class*="col-2"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 5px !important; padding: 10px !important;
         width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
     }
     
     /* > Espace 5 */
-    [class*="col-2"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 2.5px !important; padding: 10px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
@@ -869,24 +954,27 @@ p.toggle-header {
     /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
     
     /* > Par défaut */
-    [class*="col-2"].stretched-mobile .grid-content .grid-column {
+    [class*="l-grid-2"].stretched-mobile .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
 
     /* > Espace 20 (Stretched) */
-    [class*="col-2"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+    [class*="l-grid-2"][class*="l-gap-m"].stretched-mobile .grid-content .grid-column {
         width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
     }
+    
+    /* Padding spécifique Mode Card Mobile */
+    [class*="l-grid-2"][class*="l-opt-card"] .grid-column { padding: 10px !important; }
 }
 
 
 /* =================================================================
-   PARTIE 2 : EXTENSION SÉPARATEURS (sep-tiret)
+   PARTIE 2 : EXTENSION SÉPARATEURS (l-sep-tiret)
    CONDITION : Ne s'applique que SI AUCUN ESPACE n'est défini
    ================================================================= */
 
 /* Configuration de base */
-[class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-column {
+[class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-column {
     border-style: dashed !important;
     border-color: rgba(150, 150, 150, 0.4) !important;
     border-width: 0px !important;
@@ -895,11 +983,11 @@ p.toggle-header {
 /* Bureau */
 @media (min-width: 769px) {
     /* Tiret vertical sur les impairs */
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:nth-child(odd) { 
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column:nth-child(odd) { 
         border-right-width: 1px !important; 
     }
-    /* Pas de tiret sur le dernier (s'il est impair par hasard, ou pair en fin de ligne) */
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]) .grid-content .grid-column:last-child { 
+    /* Pas de tiret sur le dernier */
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]) .grid-content .grid-column:last-child { 
         border-right-width: 0px !important; 
     }
 }
@@ -907,19 +995,19 @@ p.toggle-header {
 /* Tablette */
 @media (max-width: 768px) and (min-width: 481px) {
     /* Non Stretched (2 colonnes) */
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) { 
         border-right-width: 1px !important; 
     }
-    /* Bordure bas sur tout le monde sauf les 2 derniers (Gestion propre du 2xN) */
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) { 
+    /* Bordure bas */
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) { 
         border-bottom-width: 1px !important; 
     }
 
     /* Stretched (1 colonne) */
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column { 
+    [class*="l-grid-2"][class*="l-l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column { 
         border-right-width: 0px !important; border-bottom-width: 1px !important; 
     }
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-tablet .grid-content .grid-column:last-child { 
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-tablet .grid-content .grid-column:last-child { 
         border-bottom-width: 0px !important; 
     }
 }
@@ -927,550 +1015,518 @@ p.toggle-header {
 /* Mobile */
 @media (max-width: 480px) {
     /* Non Stretched (2 colonnes) */
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-child(odd) { 
         border-right-width: 1px !important; 
     }
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]):not(.stretched-mobile) .grid-content .grid-column:nth-last-child(n+3) { 
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]):not(.stretched-mobile) .grid-content .grid-column:nth-last-child(n+3) { 
         border-bottom-width: 1px !important; 
     }
 
     /* Stretched (1 colonne) */
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column { 
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column { 
         border-right-width: 0px !important; border-bottom-width: 1px !important; 
     }
-    [class*="col-2"][class*="sep-tiret"]:not([class*="espace-5"]):not([class*="espace-20"]).stretched-mobile .grid-content .grid-column:last-child { 
+    [class*="l-grid-2"][class*="l-sep-tiret"]:not([class*="l-gap-s"]):not([class*="l-gap-m"]).stretched-mobile .grid-content .grid-column:last-child { 
         border-bottom-width: 0px !important; 
     }
 }
 
 /* =================================================================
-   PARTIE 1 : STRUCTURE GRILLE 3 COLONNES AVEC SÉPARATEUR (col-3s)
-   Structure : [Contenu 49%] [Vide 2%] [Contenu 49%]
-   PAR DÉFAUT : Collé (Espace 0)
-   OPTIONS : espace-5, espace-20
+   l-physic-2 SYSTEM
+   Structure : [Col 1] [Séparateur Vide] [Col 2]
+   Bureau : 3 éléments physiques.
+   Tablette/Mobile : Séparateur caché, grille intelligente.
    ================================================================= */
 
-/* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-3s"] .grid-content {
+/* -----------------------------------------------------------------
+   1. CONFIGURATION GLOBALE & KILL SWITCH
+   ----------------------------------------------------------------- */
+[class*="l-physic-2"] .grid-content {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: stretch !important;
-    justify-content: center !important;
 }
 
-[class*="col-3s"] .grid-column {
-    box-sizing: border-box !important;
+/* --- LE KILL SWITCH (Stratégie de Neutralisation) --- */
+
+/* A. Marges externes : On supprime les marges par défaut */
+[class*="l-physic-2"][class*="l-opt-widget"] .widget,
+[class*="l-physic-2"][class*="l-opt-widget"] .iconSection {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
-/* Correctifs Visuels */
-[class*="col-3s"] .widget-preserving-ratio-outer { padding-bottom: 87% !important; }
-[class*="col-3s"] .headingWidget { margin-top: 30px !important; }
+/* B. Padding Interne : REGLAGE PC (Par défaut) */
+/* Cible l'élément qui porte le style inline 'padding: 40px' */
+[class*="l-physic-2"][class*="l-opt-widget"] .icon-section {
+    padding: 40px 20px !important; /* Ton réglage PC */
+}
 
 
-/* --- 2. VERSION BUREAU (> 768px) --- */
+/* -----------------------------------------------------------------
+   2. VERSION DESKTOP (> 768px)
+   ----------------------------------------------------------------- */
 @media (min-width: 769px) {
+    [class*="l-physic-2"] .grid-content { justify-content: space-between !important; }
+    [class*="l-physic-2"] .grid-column { box-sizing: border-box !important; }
 
-    /* --- GESTION DES LARGEURS DE BASE --- */
-    /* Colonnes Principales (1 et 3) */
-    [class*="col-3s"] .grid-content .grid-column:nth-child(1),
-    [class*="col-3s"] .grid-content .grid-column:nth-child(3) {
-        width: 49% !important; flex: 0 0 49% !important;
-        margin: 0 !important;
+    /* --- GESTION DES ESPACES (Gaps) --- */
+    
+    /* GAP S (5px) */
+    [class*="l-physic-2"][class*="l-gap-s"] .grid-content .grid-column-no-widgets { 
+        width: 5px !important; flex: 0 0 5px !important; 
     }
-    /* Colonne Séparateur (2) */
-    [class*="col-3s"] .grid-content .grid-column:nth-child(2) {
-        width: 2% !important; flex: 0 0 2% !important;
-        padding: 0 !important; margin: 0 !important;
-    }
-
-
-    /* --- OPTION : ESPACE 20 --- */
-    [class*="col-3s"][class*="espace-20"] .grid-content .grid-column:nth-child(odd) { /* 1 et 3 */
-        margin: 10px !important; padding: 15px !important;
-        width: calc(49% - 20px) !important; flex: 0 0 calc(49% - 20px) !important;
-    }
-    /* On annule les marges sur le séparateur pour ne pas casser la ligne */
-    [class*="col-3s"][class*="espace-20"] .grid-content .grid-column:nth-child(2) {
-        margin: 0 !important; padding: 0 !important;
+    [class*="l-physic-2"][class*="l-gap-s"] .grid-content .grid-column:not(.grid-column-no-widgets) {
+        width: calc((100% - 5px) / 2) !important; flex: 0 0 calc((100% - 5px) / 2) !important;
     }
 
-
-    /* --- OPTION : ESPACE 5 --- */
-    [class*="col-3s"][class*="espace-5"] .grid-content .grid-column:nth-child(odd) { /* 1 et 3 */
-        margin: 2.5px !important; padding: 15px !important;
-        width: calc(49% - 5px) !important; flex: 0 0 calc(49% - 5px) !important;
+    /* GAP M (20px) */
+    [class*="l-physic-2"][class*="l-gap-m"] .grid-content .grid-column-no-widgets { 
+        width: 20px !important; flex: 0 0 20px !important; 
     }
-    [class*="col-3s"][class*="espace-5"] .grid-content .grid-column:nth-child(2) {
-        margin: 0 !important; padding: 0 !important;
+    [class*="l-physic-2"][class*="l-gap-m"] .grid-content .grid-column:not(.grid-column-no-widgets) {
+        width: calc((100% - 20px) / 2) !important; flex: 0 0 calc((100% - 20px) / 2) !important;
+    }
+
+    /* GAP NONE (0px) */
+    [class*="l-physic-2"][class*="l-gap-none"] .grid-content .grid-column-no-widgets { display: none !important; }
+    [class*="l-physic-2"][class*="l-gap-none"] .grid-content .grid-column:not(.grid-column-no-widgets) { 
+        width: 50% !important; flex: 0 0 50% !important; 
     }
 }
 
-
-/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+/* -----------------------------------------------------------------
+   3. VERSION TABLETTE (481px - 768px)
+   ----------------------------------------------------------------- */
 @media (max-width: 768px) and (min-width: 481px) {
+    
+    /* On cache le séparateur physique */
+    [class*="l-physic-2"] .grid-column-no-widgets { display: none !important; }
+    [class*="l-physic-2"] .grid-content .grid-column { box-sizing: border-box !important; }
 
-
-
-    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
-    [class*="col-3s"]:not(.stretched-tablet) .grid-content .grid-column {
-         width: 49% !important; flex: 0 0 49% !important; margin: 0 !important;
+    /* --- REGLAGE PADDING TABLETTE --- */
+    [class*="l-physic-2"][class*="l-opt-widget"] .icon-section {
+        padding: 35px 20px !important; /* Ton réglage Tablette */
     }
 
-    /* Colonne Séparateur (2) */
-    [class*="col-3s"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(2) {
-        width: 2% !important; flex: 0 0 2% !important;
-        padding: 0 !important; margin: 0 !important;
+    /* --- CAS A : NON STRETCHED (2 Colonnes) --- */
+    
+    /* > MODE WIDGET (Base) */
+    [class*="l-physic-2"][class*="l-opt-widget"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; margin: 0 !important; padding: 0 !important;
+        flex-grow: 1 !important; max-width: 100% !important; 
     }
-  
-    /* > Espace 20 */
-    [class*="col-3s"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
+    /* > MODE WIDGET (Avec Espaces) */
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column { padding: 10px !important; }
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column { padding: 2.5px !important; }
+
+    /* > MODE CARTE (Gap M - 20px) */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 10px !important; padding: 15px !important;
-        width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
+        width: calc(50% - 20px) !important; flex-grow: 1 !important; max-width: 100% !important;
     }
 
-      /* IMPORTANT : On cache la colonne du milieu (2%) sur tablette*/
-    [class*="col-3s"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(2) {
-        display: none !important;
-    }
-  
-    /* > Espace 5 */
-    [class*="col-3s"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+    /* > MODE CARTE (Gap S - 5px) */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
-        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+        width: calc(50% - 5px) !important; flex-grow: 1 !important; max-width: 100% !important;
+    }
+    
+    /* > MODE CARTE (Gap None) */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-none"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 0 !important; padding: 0 !important;
+        width: 50% !important; flex-grow: 1 !important; max-width: 100% !important;
     }
 
-        /* IMPORTANT : On cache la colonne du milieu (2%) sur tablette/mobile*/
-    [class*="col-3s"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(2) {
-        display: none !important;
+    /* --- CAS B : STRETCHED (1 Colonne) --- */
+    
+    /* Gap M */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-m"].stretched-tablet .grid-content .grid-column {
+        margin: 10px !important; width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
     }
-  
-    /* --- CAS B : STRETCHED (1 colonne) --- */
-    [class*="col-3s"].stretched-tablet .grid-content .grid-column {
+    /* Gap S */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-s"].stretched-tablet .grid-content .grid-column {
+        margin: 2.5px !important; width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
+    }
+    
+    /* Mode Widget Stretched */
+    [class*="l-physic-2"][class*="l-opt-widget"].stretched-tablet .grid-content .grid-column {
         width: 100% !important; margin: 0 !important;
     }
-
-    /* > Espace 20 (Stretched) */
-    [class*="col-3s"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
-        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
-    }
+    /* Correctifs internes Widget Stretched */
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-m"].stretched-tablet .grid-content .grid-column { padding: 10px !important; }
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-s"].stretched-tablet .grid-content .grid-column { padding: 2.5px !important; }
 }
 
-/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+/* -----------------------------------------------------------------
+   4. VERSION MOBILE (< 480px)
+   ----------------------------------------------------------------- */
 @media (max-width: 480px) {
 
-    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
-    [class*="col-3s"]:not(.stretched-mobile) .grid-content .grid-column {
-         width: 49% !important; flex: 0 0 49% !important; margin: 0 !important;
-    }
-  
-    /* Colonne Séparateur (2) */
-    [class*="col-3s"]:not(.stretched-mobile) .grid-content .grid-column:nth-child(2) {
-        width: 2% !important; flex: 0 0 2% !important;
-        padding: 0 !important; margin: 0 !important;
+    [class*="l-physic-2"] .grid-column-no-widgets { display: none !important; }
+    [class*="l-physic-2"] .grid-content .grid-column { box-sizing: border-box !important; }
+
+    /* --- REGLAGE PADDING MOBILE --- */
+    [class*="l-physic-2"][class*="l-opt-widget"] .icon-section {
+        padding: 30px 25px !important; /* Ton réglage Mobile */
     }
 
-      /* > Espace 20 */
-    [class*="col-3s"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
+    /* --- CAS A : NON STRETCHED (2 Colonnes par défaut) --- */
+    
+    /* > MODE WIDGET (Base) */
+    [class*="l-physic-2"][class*="l-opt-widget"]:not(.stretched-mobile) .grid-content .grid-column {
+        width: 50% !important; flex-grow: 1 !important; margin: 0 !important;
+    }
+    /* > MODE WIDGET (Avec Espaces) */
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column { padding: 10px !important; }
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column { padding: 2.5px !important; }
+
+
+    /* > MODE CARTE (Gap M réduit à 5px de marge pour mobile) */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 5px !important; padding: 10px !important;
-        width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
+        width: calc(50% - 10px) !important; flex-grow: 1 !important; max-width: 100% !important;
     }
-    
-        /* IMPORTANT : On cache la colonne du milieu (2%) sur mobile*/
-    [class*="col-3s"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column:nth-child(2) {
-        display: none !important;
-    }
-    
-    /* > Espace 5 */
-    [class*="col-3s"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+
+    /* > MODE CARTE (Gap S) */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 2.5px !important; padding: 10px !important;
-        width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
+        width: calc(50% - 5px) !important; flex-grow: 1 !important; max-width: 100% !important;
     }
 
-   /* IMPORTANT : On cache la colonne du milieu (2%) sur mobile*/
-    [class*="col-3s"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column:nth-child(2) {
-        display: none !important;
+    /* --- CAS B : STRETCHED MOBILE (1 Colonne) --- */
+    
+    /* Gap M */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-m"].stretched-mobile .grid-content .grid-column {
+        margin: 10px !important; width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
     }
-  
-    /* --- CAS B : STRETCHED MOBILE (1 colonne) --- */
-    [class*="col-3s"].stretched-mobile .grid-content .grid-column {
-        width: 100% !important; margin: 0 !important;
+    /* Gap S */
+    [class*="l-physic-2"][class*="l-opt-card"][class*="l-gap-s"].stretched-mobile .grid-content .grid-column {
+        margin: 2.5px !important; width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
     }
-
-    /* > Espace 20 (Stretched) */
-    [class*="col-3s"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
-        width: calc(100% - 20px) !important; margin: 10px !important; padding: 15px !important;
-    }
+    
+    /* Correctifs internes Widget Stretched */
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-m"].stretched-mobile .grid-content .grid-column { padding: 10px !important; }
+    [class*="l-physic-2"][class*="l-opt-widget"][class*="l-gap-s"].stretched-mobile .grid-content .grid-column { padding: 2.5px !important; }
 }
 
 /* =================================================================
-   SYSTEME DE GRILLE INTELLIGENT & RESPONSIVE Col-5
-   Compatible avec les options "Stretched" (Tablette & Mobile)
-   Gestion automatique Pair/Impair (Dernier élément s'étire)
+   l-physic-3 SYSTEM (Anciennement 3box2s)
+   Structure : 3 colonnes de contenu + 2 colonnes séparateurs (vides)
+   Desktop : Gestion physique des séparateurs.
+   Tablette/Mobile : Masquage des séparateurs et grille intelligente (2+1).
    ================================================================= */
 
-/* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-5s"] .grid-content {
+/* -----------------------------------------------------------------
+   1. CONFIGURATION GLOBALE & KILL SWITCH
+   ----------------------------------------------------------------- */
+[class*="l-physic-3"] .grid-content {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: stretch !important;
 }
 
-/* --- 2. VERSION BUREAU (Ecran > 768px) --- */
-@media (min-width: 769px) {
-    [class*="col-5s"] .grid-content { justify-content: space-between !important; }
-    [class*="col-5s"] .grid-column { box-sizing: border-box !important; }
+/* --- LE KILL SWITCH (Stratégie de Neutralisation) --- */
 
-    /* Espace 5 */
-    [class*="col-5s"][class*="espace-5"] .grid-content .grid-column-no-widgets { width: 5px !important; flex: 0 0 5px !important; min-width: 5px !important; }
-    [class*="col-5s"][class*="espace-5"] .grid-content .grid-column:not(.grid-column-no-widgets) {
+/* A. Marges externes : On supprime les marges par défaut */
+[class*="l-physic-3"][class*="l-opt-widget"] .widget,
+[class*="l-physic-3"][class*="l-opt-widget"] .iconSection {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+/* B. Padding Interne : REGLAGE PC (Par défaut) */
+/* Cible l'élément qui porte le style inline 'padding: 40px' */
+[class*="l-physic-3"][class*="l-opt-widget"] .icon-section {
+    padding: 40px 20px !important; /* Ton réglage PC */
+}
+
+
+/* -----------------------------------------------------------------
+   2. VERSION DESKTOP (> 768px)
+   ----------------------------------------------------------------- */
+@media (min-width: 769px) {
+    [class*="l-physic-3"] .grid-content { justify-content: space-between !important; }
+    [class*="l-physic-3"] .grid-column { box-sizing: border-box !important; }
+
+    /* --- OPTION : GAP S (5px) --- */
+    [class*="l-physic-3"][class*="l-gap-s"] .grid-content .grid-column-no-widgets { 
+        width: 5px !important; flex: 0 0 5px !important; min-width: 5px !important; 
+    }
+    [class*="l-physic-3"][class*="l-gap-s"] .grid-content .grid-column:not(.grid-column-no-widgets) {
         width: calc((100% - 10px) / 3) !important; flex: 0 0 calc((100% - 10px) / 3) !important;
     }
 
-    /* Espace 20 */
-    [class*="col-5s"][class*="espace-20"] .grid-content .grid-column-no-widgets { width: 20px !important; flex: 0 0 20px !important; min-width: 20px !important; }
-    [class*="col-5s"][class*="espace-20"] .grid-content .grid-column:not(.grid-column-no-widgets) {
+    /* --- OPTION : GAP M (20px) --- */
+    [class*="l-physic-3"][class*="l-gap-m"] .grid-content .grid-column-no-widgets { 
+        width: 20px !important; flex: 0 0 20px !important; min-width: 20px !important; 
+    }
+    [class*="l-physic-3"][class*="l-gap-m"] .grid-content .grid-column:not(.grid-column-no-widgets) {
         width: calc((100% - 40px) / 3) !important; flex: 0 0 calc((100% - 40px) / 3) !important;
     }
 
-    /* Espace 0 */
-    [class*="col-5s"][class*="espace-0"] .grid-content .grid-column-no-widgets { display: none !important; }
-    [class*="col-5s"][class*="espace-0"] .grid-content .grid-column:not(.grid-column-no-widgets) { width: 33.333% !important; flex: 0 0 33.333% !important; }
-  
-  
+    /* --- OPTION : GAP NONE (0px) --- */
+    [class*="l-physic-3"][class*="l-gap-none"] .grid-content .grid-column-no-widgets { display: none !important; }
+    [class*="l-physic-3"][class*="l-gap-none"] .grid-content .grid-column:not(.grid-column-no-widgets) { 
+        width: 33.333% !important; flex: 0 0 33.333% !important; 
+    }
 }
 
-/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
+/* -----------------------------------------------------------------
+   3. VERSION TABLETTE (481px - 768px)
+   ----------------------------------------------------------------- */
 @media (max-width: 768px) and (min-width: 481px) {
     
-    /* On cache les séparateurs */
-    [class*="col-5s"] .grid-column-no-widgets { display: none !important; }
-    [class*="col-5s"] .grid-content .grid-column { box-sizing: border-box !important; }
+    [class*="l-physic-3"] .grid-column-no-widgets { display: none !important; }
+    [class*="l-physic-3"] .grid-content .grid-column { box-sizing: border-box !important; }
 
-    /* --- CAS A : NON STRETCHED (Par défaut : 2 colonnes + Auto-fill) --- */
-    /* On active le flex-grow: 1 pour que le dernier élément impair prenne 100% */
-    
-    /* Mode Widget */
-    [class*="col-5s"][class*="mode-widget"]:not(.stretched-tablet) .grid-content .grid-column {
-        width: 50% !important; flex-grow: 1 !important; margin: 0 !important;
-        /* max-width important pour permettre l'étirement */
-        max-width: 100% !important; flex-basis: 50% !important; 
+    /* --- REGLAGE PADDING TABLETTE --- */
+    [class*="l-physic-3"][class*="l-opt-widget"] .icon-section {
+        padding: 35px 20px !important; /* Ton réglage Tablette */
     }
+
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
     
-    /* Mode Carte (Espace 20) */
-    [class*="col-5s"][class*="mode-carte"][class*="espace-20"]:not(.stretched-tablet) .grid-content .grid-column {
-        margin: 10px !important;
-      	padding-top : 15px !important;
-        padding-bottom : 15px !important;
+    /* > MODE WIDGET (Base) */
+    [class*="l-physic-3"][class*="l-opt-widget"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; margin: 0 !important;
+        flex-basis: 50% !important; flex-grow: 1 !important;
+        max-width: 100% !important; 
+    }
+    /* > MODE WIDGET (Avec Espaces - Padding interne) */
+    [class*="l-physic-3"][class*="l-opt-widget"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column { padding: 10px !important; }
+    [class*="l-physic-3"][class*="l-opt-widget"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column { padding: 2.5px !important; }
+    
+    /* > MODE CARTE (Gap M - 20px - Marges externes) */
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 10px !important; 
+        padding-top: 15px !important; padding-bottom: 15px !important;
         width: calc(50% - 20px) !important; flex-basis: calc(50% - 20px) !important;
         flex-grow: 1 !important; max-width: 100% !important;
     }
 
-    /* Mode Carte (Espace 5) */
-    [class*="col-5s"][class*="mode-carte"][class*="espace-5"]:not(.stretched-tablet) .grid-content .grid-column {
+    /* > MODE CARTE (Gap S - 5px) */
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column {
         margin: 2.5px !important; padding: 15px !important;
         width: calc(50% - 5px) !important; flex-basis: calc(50% - 5px) !important;
         flex-grow: 1 !important; max-width: 100% !important;
     }
 
-  /* Mode Carte (Espace 0) */
-    [class*="col-5s"][class*="mode-carte"][class*="espace-0"]:not(.stretched-tablet) .grid-content .grid-column {
-        margin: 0 !important; 
-        padding: 0 !important; /* Pas de padding interne pour coller parfaitement */
-        width: 50% !important; 
-        flex-basis: 50% !important;
-        flex-grow: 1 !important; /* Permet au dernier impair de prendre 100% */
-        max-width: 100% !important;
+    /* > MODE CARTE (Gap None) */
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-none"]:not(.stretched-tablet) .grid-content .grid-column {
+        margin: 0 !important; padding: 0 !important;
+        width: 50% !important; flex-basis: 50% !important;
+        flex-grow: 1 !important; max-width: 100% !important;
     }
-  
-    /* --- CAS B : STRETCHED (Si case cochée : 1 colonne avec marges) --- */
-    [class*="col-5s"][class*="mode-carte"][class*="espace-20"].stretched-tablet .grid-content .grid-column {
+
+    /* --- CAS B : STRETCHED (1 colonne forcée) --- */
+    
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-m"].stretched-tablet .grid-content .grid-column {
         margin: 10px !important; width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
     }
-    [class*="col-5s"][class*="mode-carte"][class*="espace-5"].stretched-tablet .grid-content .grid-column {
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-s"].stretched-tablet .grid-content .grid-column {
         margin: 2.5px !important; width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
     }
     
-    /* Espacements internes Widget */
-    [class*="col-5s"][class*="mode-widget"][class*="espace-20"] .grid-content .grid-column { padding: 10px !important; }
-    [class*="col-5s"][class*="mode-widget"][class*="espace-5"] .grid-content .grid-column { padding: 2.5px !important; }
-      /* Marge icone sur mobile uniquement */
-    [class*="col-5s"][class*="mode-widget"] .grid-content .grid-column:last-child .iconSection {
+    /* Annulation marge icone dernier élément */
+    [class*="l-physic-3"][class*="l-opt-widget"] .grid-content .grid-column:last-child .iconSection {
         margin-top: 0px !important;
     }
 }
 
-/* --- 4. VERSION MOBILE (Moins de 480px) --- */
+/* -----------------------------------------------------------------
+   4. VERSION MOBILE (< 480px)
+   ----------------------------------------------------------------- */
 @media (max-width: 480px) {
 
-    /* On cache les séparateurs */
-    [class*="col-5s"] .grid-column-no-widgets { display: none !important; }
-    [class*="col-5s"] .grid-content .grid-column { box-sizing: border-box !important; }
+    [class*="l-physic-3"] .grid-column-no-widgets { display: none !important; }
+    [class*="l-physic-3"] .grid-content .grid-column { box-sizing: border-box !important; }
 
-    /* --- CAS A : NON STRETCHED MOBILE (Par défaut : 2 colonnes + Auto-fill) --- */
-    /* C'est ici qu'on change le comportement par défaut du mobile pour faire du 2 cols */
+    /* --- REGLAGE PADDING MOBILE --- */
+    /* Cible prioritaire sur mobile */
+    [class*="l-physic-3"][class*="l-opt-widget"] .icon-section {
+        padding: 30px 25px !important; /* Ton réglage Mobile */
+    }
 
-    /* Mode Widget */
-    [class*="col-5s"][class*="mode-widget"]:not(.stretched-mobile) .grid-content .grid-column {
+    /* --- CAS A : NON STRETCHED (2 colonnes) --- */
+
+    /* > MODE WIDGET (Base) */
+    [class*="l-physic-3"][class*="l-opt-widget"]:not(.stretched-mobile) .grid-content .grid-column {
         width: 50% !important; flex-grow: 1 !important; margin: 0 !important;
         max-width: 100% !important; flex-basis: 50% !important;
     }
+    /* > MODE WIDGET (Avec Espaces - Padding interne) */
+    [class*="l-physic-3"][class*="l-opt-widget"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column { padding: 10px !important; }
+    [class*="l-physic-3"][class*="l-opt-widget"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column { padding: 2.5px !important; }
     
-    /* Mode Carte (Espace 20) */
-    [class*="col-5s"][class*="mode-carte"][class*="espace-20"]:not(.stretched-mobile) .grid-content .grid-column {
-        margin: 5px !important; /* Marge réduite sur mobile pour gagner de la place */
+    /* > MODE CARTE (Gap M) -> Optimisé à 5px de marge pour mobile */
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column {
+        margin: 5px !important; 
         padding: 10px !important;
-        /* Calcul ajusté pour petits écrans */
         width: calc(50% - 10px) !important; flex-basis: calc(50% - 10px) !important;
         flex-grow: 1 !important; max-width: 100% !important;
     }
 
-    /* Mode Carte (Espace 5) */
-    [class*="col-5s"][class*="mode-carte"][class*="espace-5"]:not(.stretched-mobile) .grid-content .grid-column {
+    /* > MODE CARTE (Gap S) */
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column {
         margin: 2.5px !important; padding: 10px !important;
         width: calc(50% - 5px) !important; flex-basis: calc(50% - 5px) !important;
         flex-grow: 1 !important; max-width: 100% !important;
     }
 
-    /* --- CAS B : STRETCHED MOBILE (Si case cochée : 1 colonne) --- */
-    /* Si "Stretched Mobile" est coché, on force 100% de large mais on garde les marges Mode Carte */
+    /* --- CAS B : STRETCHED MOBILE (1 colonne forcée) --- */
     
-    [class*="col-5s"][class*="mode-carte"][class*="espace-20"].stretched-mobile .grid-content .grid-column {
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-m"].stretched-mobile .grid-content .grid-column {
         margin: 10px !important; width: calc(100% - 20px) !important; flex: 0 0 calc(100% - 20px) !important;
     }
-    [class*="col-5s"][class*="mode-carte"][class*="espace-5"].stretched-mobile .grid-content .grid-column {
+    [class*="l-physic-3"][class*="l-opt-card"][class*="l-gap-s"].stretched-mobile .grid-content .grid-column {
         margin: 2.5px !important; width: calc(100% - 5px) !important; flex: 0 0 calc(100% - 5px) !important;
     }
-
-    /* Espacements internes Widget */
-    [class*="col-5s"][class*="mode-widget"][class*="espace-20"] .grid-content .grid-column { padding: 10px !important; }
-    [class*="col-5s"][class*="mode-widget"][class*="espace-5"] .grid-content .grid-column { padding: 2.5px !important; }
     
-    /* Marge icone sur mobile uniquement */
-    [class*="col-5s"][class*="mode-widget"] .grid-content .grid-column:last-child .iconSection {
+    [class*="l-physic-3"][class*="l-opt-widget"] .grid-content .grid-column:last-child .iconSection {
         margin-top: 0px !important;
     }
 }
 
 /* =================================================================
-  FOOTER AVANTAGES (Icônes Services)
-  Nom de classe : col-4-footer-avantages
-  ================================================================= */
-/* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-4-footer-avantages"] .grid-content {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: stretch !important;
-}
-
-[class*="col-4-footer-avantages"] .grid-column {
-  box-sizing: border-box !important;
-  border-style: dashed !important;
-
-  /* Couleur du tiret : Identique au précédent (Gris léger) */
-  border-color: rgba(150, 150, 150, 0.4) !important; 
-  border-width: 0px !important; /* Reset */
-
-  /* Centrage du contenu car ce sont des icônes */
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
-
-/* On annule la marge parasite de 10px */
-[class*="col-4-footer-avantages"] .type3.icon-section .icon i {
-  line-height: 35px;
-}
-
-/* On annule la marge parasite de 10px */
-[class*="col-4-footer-avantages"] .type3.icon-section .icon-title {
- margin-top: 0px !important;
-}
-
-[class*="col-4-footer-avantages"] .icon-section header h6 {
-  margin-bottom: 0px !important;
-}
-
-/* --- 2. VERSION BUREAU (> 768px) --- */
-@media (min-width: 769px) {
-
-  /* --- CORRECTIF ICONE : On annule la marge parasite de 10px --- */
-  [class*="col-4-footer-avantages"] .iconSection {
-    margin-top: 0px !important;
-  }
-
-  [class*="col-4-footer-avantages"] .grid-content .grid-column {
-    width: 25% !important;
-    flex: 0 0 25% !important;
-   padding-left: 15px !important;
-    padding-right: 15px !important;
-
-    /* Bordure à droite */
-    border-right-width: 1px !important; 
-  }
-
-  /* Pas de bordure pour le dernier */
-  [class*="col-4-footer-avantages"] .grid-content .grid-column:last-child {
-    border-right-width: 0px !important;
-  }
-}
-
-/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
-
-@media (max-width: 768px) and (min-width: 481px) {
-
-  /* --- CORRECTIF ICONE : On annule la marge parasite de 10px --- */
-  [class*="col-4-footer-avantages"] .iconSection {
-margin-top: 0px !important;
-        padding: 0 0% !important;
-  }
-
-  /* --- CAS A : NON STRETCHED (2 colonnes par ligne) --- */
-  [class*="col-4-footer-avantages"]:not(.stretched-tablet) .grid-content .grid-column {
-    width: 50% !important;
-    flex: 0 0 50% !important;
-    border-right-width: 0px !important;
-    border-bottom-width: 0px !important;
-  }
-
-  /* Bordures 2x2 */
-  [class*="col-4-footer-avantages"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) {
-    border-right-width: 1px !important;
-  }
-
-  [class*="col-4-footer-avantages"]:not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) {
-    border-bottom-width: 1px !important;
-  }
-
-  /* --- CAS B : STRETCHED TABLET (1 colonne par ligne) --- */
-  [class*="col-4-footer-avantages"].stretched-tablet .grid-content .grid-column {
-    width: 100% !important;
-    flex: 0 0 100% !important;
-    border-right-width: 0px !important;
-    border-bottom-width: 1px !important;
-  }
-
-  [class*="col-4-footer-avantages"].stretched-tablet .grid-content .grid-column:last-child {
-    border-bottom-width: 0px !important;
-  }
-}
-
-/* --- 4. VERSION MOBILE (Moins de 480px) --- */
-@media (max-width: 480px) {
- 
-  /* --- CORRECTIF ICONE : On annule la marge parasite ici aussi --- */
-  [class*="col-4-footer-avantages"] .iconSection {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-  }
-
-  /* Empilement systématique sur mobile */
-  [class*="col-4-footer-avantages"] .grid-content .grid-column {
-    width: 100% !important;
-    flex: 0 0 100% !important;
-    border-right-width: 0px !important;
-    border-bottom-width: 1px !important;
-  }
-
-  /* Pas de bordure sous le dernier */
-  [class*="col-4-footer-avantages"] .grid-content .grid-column:last-child {
-    border-bottom-width: 0px !important;
-  }
-}
-
-/* =================================================================
-   FOOTER INFOS (4 Colonnes avec Séparateurs Tirets)
-   Nom de classe : col-4-footer-infos
+   L-FOOTER SYSTEM (Architecture 'l-' sécurisée)
+   1. STRUCTURE : l-footer-grid-4 (Grille, Flex, Bordures)
+   2. VARIANTES : l-footer-features (Icônes) / l-footer-info (Texte)
    ================================================================= */
 
-/* --- 1. CONFIGURATION GLOBALE --- */
-[class*="col-4-footer-infos"] .grid-content {
+/* -----------------------------------------------------------------
+   1. MOTEUR STRUCTUREL : l-footer-grid-4
+   ----------------------------------------------------------------- */
+
+/* --- Configuration Globale (Le Socle) --- */
+[class*="l-footer-grid-4"] .grid-content {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: stretch !important;
 }
 
-[class*="col-4-footer-infos"] .grid-column {
+[class*="l-footer-grid-4"] .grid-column {
     box-sizing: border-box !important;
-    border-style: dashed !important;
-    /* Couleur du tiret : Gris léger (Ajuste le 0.4 pour changer la transparence) */
-    border-color: rgba(150, 150, 150, 0.4) !important; 
-    border-width: 0px !important; /* On reset les bordures par défaut */
-}
-
-/* --- 2. VERSION BUREAU (> 768px) --- */
-/* Affichage : 4 colonnes alignées */
-@media (min-width: 769px) {
     
-    [class*="col-4-footer-infos"] .grid-content .grid-column {
-        width: 25% !important;
-        flex: 0 0 25% !important;
-
-      /* Bordure verticale à droite pour tout le monde... */
-        border-right-width: 1px !important; 
-    }
-
-    /* ... SAUF pour le tout dernier élément (le 4ème) */
-    [class*="col-4-footer-infos"] .grid-content .grid-column:last-child {
-        border-right-width: 0px !important;
-    }
+    /* Gestion des Séparateurs (Tirets) */
+    border-style: dashed !important;
+    border-color: rgba(150, 150, 150, 0.4) !important;
+    border-width: 0px !important; /* Reset par défaut */
 }
 
-/* --- 3. VERSION TABLETTE (Entre 481px et 768px) --- */
-@media (max-width: 768px) and (min-width: 481px) {
-
-    /* --- CAS A : NON STRETCHED (Par défaut : 2 colonnes par ligne) --- */
-    /* On crée une grille 2x2 */
-    [class*="col-4-footer-infos"]:not(.stretched-tablet) .grid-content .grid-column {
-        width: 50% !important;
-        flex: 0 0 50% !important;
+/* --- VERSION DESKTOP (> 768px) --- */
+@media (min-width: 769px) {
+    [class*="l-footer-grid-4"] .grid-content .grid-column {
+        width: 25% !important; 
+        flex: 0 0 25% !important;
         
-        /* On nettoie les bordures desktop avant d'appliquer les nouvelles */
-        border-right-width: 0px !important;
-        border-bottom-width: 0px !important;
-    }
-
-    /* Bordure à DROITE pour les éléments IMPAIRS (Colonne de gauche : 1 et 3) */
-    [class*="col-4-footer-infos"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) {
+        /* Bordure à droite pour tous... */
         border-right-width: 1px !important;
     }
 
-    /* Bordure en BAS pour les éléments de la PREMIÈRE LIGNE (1 et 2) */
-    /* La formule :nth-last-child(n+3) cible tout le monde sauf les 2 derniers */
-    [class*="col-4-footer-infos"]:not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) {
-        border-bottom-width: 1px !important;
-    }
-
-    /* --- CAS B : STRETCHED TABLET (Si coché : 1 colonne par ligne) --- */
-    [class*="col-4-footer-infos"].stretched-tablet .grid-content .grid-column {
-        width: 100% !important;
-        flex: 0 0 100% !important;
+    /* ... Sauf le dernier */
+    [class*="l-footer-grid-4"] .grid-content .grid-column:last-child {
         border-right-width: 0px !important;
-        border-bottom-width: 1px !important; /* Ligne en dessous */
-    }
-    
-    /* Pas de bordure sous le dernier */
-    [class*="col-4-footer-infos"].stretched-tablet .grid-content .grid-column:last-child {
-        border-bottom-width: 0px !important;
     }
 }
 
-/* --- 4. VERSION MOBILE (Moins de 480px) --- */
-@media (max-width: 480px) {
-
-    /* Sur mobile, on empile tout (1 colonne), stretched ou pas */
+/* --- VERSION TABLETTE (481px - 768px) --- */
+@media (max-width: 768px) and (min-width: 481px) {
     
-    [class*="col-4-footer-infos"] .grid-content .grid-column {
-        width: 100% !important;
+    /* CAS A : NON STRETCHED (Grille 2x2 par défaut) */
+    [class*="l-footer-grid-4"]:not(.stretched-tablet) .grid-content .grid-column {
+        width: 50% !important; 
+        flex: 0 0 50% !important;
+        
+        /* Reset des bordures desktop */
+        border-right-width: 0px !important; 
+        border-bottom-width: 0px !important;
+    }
+
+    /* Bordure Droite : Uniquement sur les impairs (Colonne Gauche) */
+    [class*="l-footer-grid-4"]:not(.stretched-tablet) .grid-content .grid-column:nth-child(odd) {
+        border-right-width: 1px !important;
+    }
+
+    /* Bordure Bas : Sur tous sauf les 2 derniers (1ère ligne) */
+    [class*="l-footer-grid-4"]:not(.stretched-tablet) .grid-content .grid-column:nth-last-child(n+3) {
+        border-bottom-width: 1px !important;
+    }
+
+    /* CAS B : STRETCHED (1 colonne empilée) */
+    [class*="l-footer-grid-4"].stretched-tablet .grid-content .grid-column {
+        width: 100% !important; 
         flex: 0 0 100% !important;
         
-        /* Bordure en bas uniquement */
-        border-right-width: 0px !important;
-        border-bottom-width: 1px !important;
+        border-right-width: 0px !important; 
+        border-bottom-width: 1px !important; /* Ligne de séparation */
     }
 
-    /* Pas de bordure en bas pour le tout dernier bloc */
-    [class*="col-4-footer-infos"] .grid-content .grid-column:last-child {
+    /* Pas de bordure sous le tout dernier */
+    [class*="l-footer-grid-4"].stretched-tablet .grid-content .grid-column:last-child {
         border-bottom-width: 0px !important;
     }
 }
 
+/* --- VERSION MOBILE (< 480px) --- */
+@media (max-width: 480px) {
+    /* Toujours 1 colonne sur mobile */
+    [class*="l-footer-grid-4"] .grid-content .grid-column {
+        width: 100% !important; 
+        flex: 0 0 100% !important;
+        
+        border-right-width: 0px !important; 
+        border-bottom-width: 1px !important;
+    }
+
+    /* Pas de bordure sous le dernier */
+    [class*="l-footer-grid-4"] .grid-content .grid-column:last-child {
+        border-bottom-width: 0px !important;
+    }
+}
+
+
+/* -----------------------------------------------------------------
+   2. VARIANTE : FEATURES / AVANTAGES (l-footer-features)
+   Spécificité : Centrage vertical, Nettoyage des icônes Simvoly
+   ----------------------------------------------------------------- */
+
+/* Centrage Vertical */
+[class*="l-footer-features"] .grid-column {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+/* Nettoyage Force Brute des marges icônes Simvoly */
+[class*="l-footer-features"] .type3.icon-section .icon i { line-height: 35px; }
+[class*="l-footer-features"] .type3.icon-section .icon-title { margin-top: 0px !important; }
+[class*="l-footer-features"] .icon-section header h6 { margin-bottom: 0px !important; }
+[class*="l-footer-features"] .iconSection { margin-top: 0px !important; margin-bottom: 0px !important; }
+
+/* Padding Desktop spécifique pour aérer les icônes */
+@media (min-width: 769px) {
+    [class*="l-footer-features"] .grid-content .grid-column {
+        padding-left: 15px !important; 
+        padding-right: 15px !important;
+    }
+}
+
+/* Reset Padding Tablette */
+@media (max-width: 768px) and (min-width: 481px) {
+    [class*="l-footer-features"] .iconSection { padding: 0 !important; }
+}
+
+
+/* -----------------------------------------------------------------
+   3. VARIANTE : INFO / LIENS (l-footer-info)
+   Spécificité : Prêt pour de futurs ajustements (texte aligné gauche etc.)
+   ----------------------------------------------------------------- */
+   
+[class*="l-footer-info"] .grid-content {
+    /* Placeholder pour futurs styles spécifiques aux blocs texte */
+}
+
+/* ===== FIN CSS SITE ALPHA =====
+   === 16/01/2026 / 03:55:02 ====
+   ============================= */
