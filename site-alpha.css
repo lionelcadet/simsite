@@ -1,5 +1,5 @@
 /* ======== CSS SITE ALPHA ======== 
-====== 16/01/2026 / 11:01:26 ======
+====== 15/01/2026 / 15:01:26 ======
 ===================================*/
 
 /* ========= Général ========== */
@@ -630,13 +630,13 @@ p.toggle-header {
 
     /* --- OPTION : ESPACE 20 --- */
     [class*="l-grid-4"][class*="l-gap-m"] .grid-content .grid-column {
-        margin: 10px !important; padding: 15px !important;
+        margin: 10px !important; padding: 0px !important;
         width: calc(25% - 20px) !important; flex: 0 0 calc(25% - 20px) !important;
     }
 
     /* --- OPTION : ESPACE 5 --- */
     [class*="l-grid-4"][class*="l-gap-s"] .grid-content .grid-column {
-        margin: 2.5px !important; padding: 15px !important;
+        margin: 2.5px !important; padding: 0px !important;
         width: calc(25% - 5px) !important; flex: 0 0 calc(25% - 5px) !important;
     }
 
@@ -657,13 +657,13 @@ p.toggle-header {
 
     /* > Espace 20 */
     [class*="l-grid-4"][class*="l-gap-m"]:not(.stretched-tablet) .grid-content .grid-column {
-        margin: 10px !important; padding: 15px !important;
+        margin: 10px !important; padding: 0px !important;
         width: calc(50% - 20px) !important; flex: 0 0 calc(50% - 20px) !important;
     }
     
     /* > Espace 5 */
     [class*="l-grid-4"][class*="l-gap-s"]:not(.stretched-tablet) .grid-content .grid-column {
-        margin: 2.5px !important; padding: 15px !important;
+        margin: 2.5px !important; padding: 0px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
 
@@ -696,13 +696,13 @@ p.toggle-header {
 
     /* > Espace 20 (Optimisé 5px marge) */
     [class*="l-grid-4"][class*="l-gap-m"]:not(.stretched-mobile) .grid-content .grid-column {
-        margin: 5px !important; padding: 10px !important;
+        margin: 5px !important; padding: 0px !important;
         width: calc(50% - 10px) !important; flex: 0 0 calc(50% - 10px) !important;
     }
     
     /* > Espace 5 (Optimisé 2.5px marge) */
     [class*="l-grid-4"][class*="l-gap-s"]:not(.stretched-mobile) .grid-content .grid-column {
-        margin: 2.5px !important; padding: 10px !important;
+        margin: 2.5px !important; padding: 0px !important;
         width: calc(50% - 5px) !important; flex: 0 0 calc(50% - 5px) !important;
     }
 
@@ -1724,5 +1724,5 @@ p.toggle-header {
 }
 
 /* ===== FIN CSS SITE ALPHA =====
-   === 16/01/2026 / 11:01:26 ====
+   === 15/01/2026 / 15:01:26 ====
    ============================= */
